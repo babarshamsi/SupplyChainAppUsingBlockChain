@@ -17,7 +17,7 @@ class QRCodeGenerator {
     private var bitmap: Bitmap? = null
     private val qrgEncoder: QRGEncoder? = null
 
-    public fun codeGenerator(inputValue: String) {
+    fun codeGenerator(inputValue: String) {
 
 //        val manager = getSystemService as WindowManager?
 //        val display = manager!!.defaultDisplay
@@ -28,26 +28,25 @@ class QRCodeGenerator {
         var smallerDimension = if (width < height) width else height
         smallerDimension = smallerDimension * 3 / 4
 
-    // Initializing the QR Encoder with your value to be encoded, type you required and Dimension
-    val qrgEncoder = QRGEncoder(inputValue, null, QRGContents.Type.TEXT, smallerDimension);
+        // Initializing the QR Encoder with your value to be encoded, type you required and Dimension
+        val qrgEncoder = QRGEncoder(inputValue, null, QRGContents.Type.TEXT, smallerDimension);
         qrgEncoder.colorBlack = Color.BLACK;
         qrgEncoder.colorWhite = Color.WHITE;
-    try {
-        // Getting QR-Code as Bitmap
-        val qrgSaver = QRGSaver()
-        qrgSaver.save(
-            savePath,
-            "myImage",
-            qrgEncoder.bitmap,
-            QRGContents.ImageType.IMAGE_JPEG
-        )
-        saveQRCode()
-        // Setting Bitmap to ImageView
+        try {
+            // Getting QR-Code as Bitmap
+            val qrgSaver = QRGSaver()
+            qrgSaver.save(
+                savePath,
+                "myImage",
+                qrgEncoder.bitmap,
+                QRGContents.ImageType.IMAGE_JPEG
+            )
+            saveQRCode()
+            // Setting Bitmap to ImageView
 //        qrImage.setImageBitmap(bitmap);
-    } catch (e: Exception) {
-        Log.v("TAG", e.toString());
-
-    }
+        } catch (e: Exception) {
+            Log.v("TAG", e.toString());
+        }
     }
 
     private fun saveQRCode() {

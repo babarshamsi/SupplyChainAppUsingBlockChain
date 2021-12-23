@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.pg.clubpampers.android.de.supplychainapp"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -47,4 +47,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-vision:11.8.0'
     implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
     implementation 'com.google.zxing:core:3.3.3'
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
 }
