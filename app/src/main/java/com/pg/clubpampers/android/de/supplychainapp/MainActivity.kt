@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setUpListeners()
+
     val CAMERA_PERMISSION_REQUEST_CODE = 2
     val result = ContextCompat.checkSelfPermission(
         this.getApplicationContext(),
@@ -67,6 +69,16 @@ class MainActivity : AppCompatActivity() {
 
                 }
             })
+        }
+    }
+
+    private fun setUpListeners() {
+        consumerButton?.setOnClickListener {
+
+        }
+
+        supplierButton?.setOnClickListener {
+
         }
     }
 

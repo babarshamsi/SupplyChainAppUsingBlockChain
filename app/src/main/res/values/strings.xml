@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SupplyChainApp</string>
+
+    <string name="swansea_bold" translatable="false">fonts/swansea_bold</string>
+
+    <string name="supplier">Supplier</string>
+    <string name="consumer">Consumer</string>
+
 </resources>

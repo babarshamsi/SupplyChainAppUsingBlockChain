@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- button radius -->
+    <dimen name="normal_button_radius">24dp</dimen>
+    <!-- normal button text -->
+    <dimen name="button_text_size">16sp</dimen>
+
+    <dimen name="custom_button_height">48dp</dimen>
+    <dimen name="custom_button_width">250dp</dimen>
+</resources>
