@@ -29,5 +29,16 @@
         <item name="android:textSize">@dimen/medium_large_text_size</item>
     </style>
 
+    <style name="Rounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent = "Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/cornFlowerBlue</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="hintTextColor">@color/cornFlowerBlue</item>
+    </style>
+
 
 </resources>

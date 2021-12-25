@@ -3,6 +3,7 @@ package com.pg.clubpampers.android.de.supplychainapp
 import Model.Chain
 import Network.ApiInterface
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
@@ -74,11 +75,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpListeners() {
         consumerButton?.setOnClickListener {
-
         }
 
         supplierButton?.setOnClickListener {
-
+            startActivity(Intent(this@MainActivity, SupplierActivity::class.java))
         }
     }
 

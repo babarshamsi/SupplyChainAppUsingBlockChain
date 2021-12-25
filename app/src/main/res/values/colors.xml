@@ -8,10 +8,14 @@
     <color name="black">#FF000000</color>
 
     <color name="white">#ffffff</color>
-    <color name="cyan">#8CBED6</color>
+    <color name="whiteSmoke">#F5F5F5</color>
+    <color name="cornFlowerBlue">#8CBED6</color>
     <color name="coral">#00ADF2</color>
     <color name="coralDark">#009AEE</color>
     <color name="gray">#B6B6B6</color>
+    <color name="lightGray">#D3D3D3</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color">@color/cornFlowerBlue</color>
 
 
 
