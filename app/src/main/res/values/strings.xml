@@ -5,5 +5,10 @@
 
     <string name="supplier">Supplier</string>
     <string name="consumer">Consumer</string>
+    
+    <string name="supplier_name">Supplier Name</string>
+    <string name="retailer_name">Retailer Name</string>
+    <string name="pick_up_date">Pick Up Date</string>
+    <string name="deliver_date">Deliver Date</string>
 
 </resources>

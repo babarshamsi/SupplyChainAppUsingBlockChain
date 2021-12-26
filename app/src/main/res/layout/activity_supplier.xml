@@ -25,8 +25,28 @@
                 android:id="@+id/supplierName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/cornFlowerBlue"
-                android:hint="Hint Animation Disabled" />
+                style="@style/TextInputLayoutEditTextStyle"
+                android:hint="@string/supplier_name" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/extra_large_space"
+            style="@style/TextInputLayoutStyle"
+            android:textColorHint="@color/cornFlowerBlue"
+            app:boxBackgroundMode="outline"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/cornFlowerBlue"
+            app:shapeAppearance="@style/Rounded">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/retailerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayoutEditTextStyle"
+                android:hint="@string/retailer_name" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,12 +65,38 @@
                 android:id="@+id/pickUpDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/cornFlowerBlue"
-                android:hint="Floating Hint Enabled Default" />
+                style="@style/TextInputLayoutEditTextStyle"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/pick_up_date" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/extra_large_space"
+            style="@style/TextInputLayoutStyle"
+            android:textColorHint="@color/cornFlowerBlue"
+            app:boxBackgroundMode="outline"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/cornFlowerBlue"
+            app:shapeAppearance="@style/Rounded">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deliverDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayoutEditTextStyle"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/deliver_date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 </ScrollView>

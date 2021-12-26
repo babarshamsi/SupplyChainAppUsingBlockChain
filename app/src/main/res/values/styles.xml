@@ -40,5 +40,14 @@
         <item name="hintTextColor">@color/cornFlowerBlue</item>
     </style>
 
+    <style name="TextInputLayoutEditTextStyle" parent = "Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+      <item name="android:textColor">@color/darkGray</item>
+        <item name="backgroundTint">@color/cornFlowerBlue</item>
+    </style>
+
+    <style name="CustomCalenderStyle" parent = "ShapeAppearanceOverlay.MaterialComponents.MaterialCalendar.Day">
+        <item name="android:textColor">@color/darkGray</item>
+    </style>
+
 
 </resources>
