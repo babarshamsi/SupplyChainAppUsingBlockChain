@@ -62,6 +62,46 @@
             app:shapeAppearance="@style/Rounded">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pickUpFrom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayoutEditTextStyle"
+                android:hint="@string/pick_up_from" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/extra_large_space"
+            style="@style/TextInputLayoutStyle"
+            android:textColorHint="@color/cornFlowerBlue"
+            app:boxBackgroundMode="outline"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/cornFlowerBlue"
+            app:shapeAppearance="@style/Rounded">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deliverTo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayoutEditTextStyle"
+                android:hint="@string/deliver_to" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/extra_large_space"
+            style="@style/TextInputLayoutStyle"
+            android:textColorHint="@color/cornFlowerBlue"
+            app:boxBackgroundMode="outline"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/cornFlowerBlue"
+            app:shapeAppearance="@style/Rounded">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pickUpDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,6 +137,15 @@
                 android:hint="@string/deliver_date" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/saveSupplierButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/fab_content_desc"
+            app:srcCompat="@drawable/ic_save"/>
 
     </LinearLayout>
 </ScrollView>

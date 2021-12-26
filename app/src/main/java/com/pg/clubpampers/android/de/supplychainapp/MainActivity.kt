@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpListeners() {
         consumerButton?.setOnClickListener {
+            startActivity(Intent(this@MainActivity, ScanViewActivity::class.java))
         }
 
         supplierButton?.setOnClickListener {
