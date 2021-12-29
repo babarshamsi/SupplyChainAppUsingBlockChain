@@ -1,14 +1,22 @@
 package com.pg.clubpampers.android.de.supplychainapp
 
 import Model.Supplier
+import Network.ApiInterface
 import Utils.QRCodeGenerator
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_supplier.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class SupplierActivity : AppCompatActivity() {
 
@@ -60,30 +68,59 @@ class SupplierActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         saveSupplierButton?.setOnClickListener {
-            getSupplierInfo()
-            saveSupplierInfo()
+            saveSupplierInfoToBlockChain()
         }
     }
 
     private fun getSupplierInfo(): String {
-        val supplier = Supplier(supplierName = supplierName.text.toString().trim(),
-        retailerName = retailerName.text.toString().trim(), pickUpDate = pickUpDate.text.toString().trim(),
-        deliverDate = deliverDate?.text.toString().trim(), pickUpFrom = pickUpFrom.text.toString().trim(),
-        deliverTo = deliverTo.text.toString().trim())
+        val supplier = Supplier(
+            supplierName = supplierName.text.toString().trim(),
+            retailerName = retailerName.text.toString().trim(),
+            pickUpDate = pickUpDate.text.toString().trim(),
+            deliverDate = deliverDate?.text.toString().trim(),
+            pickUpFrom = pickUpFrom.text.toString().trim(),
+            deliverTo = deliverTo.text.toString().trim()
+        )
         val supplierInfo = Gson().toJson(supplier)
         return supplierInfo
     }
 
-    private fun saveSupplierInfo() {
-                    val qrCode = QRCodeGenerator()
-            qrCode.codeGenerator(getSupplierInfo())
-//            startActivity(
-//                Intent(this@
-//            MainActivity, ScanViewActivity::class.java)
-//            )
+    private fun getSupplier(): Supplier {
+        val supplier = Supplier(
+            supplierName = supplierName.text.toString().trim(),
+            retailerName = retailerName.text.toString().trim(),
+            pickUpDate = pickUpDate.text.toString().trim(),
+            deliverDate = deliverDate?.text.toString().trim(),
+            pickUpFrom = pickUpFrom.text.toString().trim(),
+            deliverTo = deliverTo.text.toString().trim()
+        )
+        return supplier
     }
 
+    private fun saveSupplierInfoAndGetBitmap(): Bitmap? {
+        val qrCode = QRCodeGenerator()
+        return qrCode.codeGenerator(getSupplierInfo())
+    }
 
+    private fun saveSupplierInfoToBlockChain() {
+        val apiInterface = ApiInterface.create().postSupplierInfo(supplier = getSupplier())
+
+        apiInterface.enqueue( object : Callback<Void> {
+            override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+                    openQRCodeActivity()
+            }
+
+            override fun onFailure(call: Call<Void>?, t: Throwable?) {
+                Toast.makeText(this@SupplierActivity, t.toString(), Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    private fun openQRCodeActivity(){
+        val intent = Intent(this, QRCodeActivity::class.java)
+        intent.putExtra("BitmapImage", saveSupplierInfoAndGetBitmap())
+        startActivity(intent)
+    }
 }
 
 

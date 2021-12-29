@@ -1,6 +1,6 @@
 package com.pg.clubpampers.android.de.supplychainapp
 
-import Model.Chain
+import Model.Response.Chain
 import Network.ApiInterface
 import android.Manifest
 import android.content.Intent

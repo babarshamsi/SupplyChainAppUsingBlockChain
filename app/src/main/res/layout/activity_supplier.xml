@@ -25,6 +25,7 @@
                 android:id="@+id/supplierName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Babar"
                 style="@style/TextInputLayoutEditTextStyle"
                 android:hint="@string/supplier_name" />
 
@@ -45,6 +46,7 @@
                 android:id="@+id/retailerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Rohail"
                 style="@style/TextInputLayoutEditTextStyle"
                 android:hint="@string/retailer_name" />
 
@@ -65,6 +67,7 @@
                 android:id="@+id/pickUpFrom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Karachi"
                 style="@style/TextInputLayoutEditTextStyle"
                 android:hint="@string/pick_up_from" />
 
@@ -85,6 +88,7 @@
                 android:id="@+id/deliverTo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Lahore"
                 style="@style/TextInputLayoutEditTextStyle"
                 android:hint="@string/deliver_to" />
 
@@ -106,6 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/TextInputLayoutEditTextStyle"
+                android:text="12, Dec 2021"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
@@ -130,6 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/TextInputLayoutEditTextStyle"
+                android:text="31, Dec 2021"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"

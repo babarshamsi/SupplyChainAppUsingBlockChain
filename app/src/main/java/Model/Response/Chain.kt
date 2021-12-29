@@ -1,4 +1,4 @@
-package Model
+package Model.Response
 
 data class Chain(
     var chain: List<ChainObj>,

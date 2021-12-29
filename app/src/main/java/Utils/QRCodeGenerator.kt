@@ -17,7 +17,7 @@ class QRCodeGenerator {
     private var bitmap: Bitmap? = null
     private val qrgEncoder: QRGEncoder? = null
 
-    fun codeGenerator(inputValue: String) {
+    fun codeGenerator(inputValue: String): Bitmap? {
 
 //        val manager = getSystemService as WindowManager?
 //        val display = manager!!.defaultDisplay
@@ -47,6 +47,7 @@ class QRCodeGenerator {
         } catch (e: Exception) {
             Log.v("TAG", e.toString());
         }
+        return qrgEncoder.bitmap
     }
 
     private fun saveQRCode() {
