@@ -1,4 +1,4 @@
-package com.pg.clubpampers.android.de.supplychainapp
+package com.supplychainapp
 
 import Model.Response.Chain
 import Network.ApiInterface
@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.android.supplychainapp.R
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback

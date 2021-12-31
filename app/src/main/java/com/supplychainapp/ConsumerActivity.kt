@@ -1,4 +1,4 @@
-package com.pg.clubpampers.android.de.supplychainapp
+package com.supplychainapp
 
 import Model.Response.Chain
 import Model.Supplier
@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.supplychainapp.R
 import kotlinx.android.synthetic.main.activity_consumer.*
 import org.json.JSONObject
 import retrofit2.Call

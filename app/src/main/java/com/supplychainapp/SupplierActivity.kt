@@ -1,22 +1,18 @@
-package com.pg.clubpampers.android.de.supplychainapp
+package com.supplychainapp
 
-import Extensions.unWrap
-import Model.Response.SupplyResponse
+import Extensions.visibility
 import Model.Supplier
-import Network.ApiInterface
-import Utils.QRCodeGenerator
+import Utils.GenericDialogFragment
+import Utils.SingletonForProduct.isManufacturerInfoAdded
+import Utils.SingletonForProduct.isSupplierInfoAdded
+import Utils.isAddMoreInfoConditionValid
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.supplychainapp.R
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_supplier.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,6 +25,7 @@ class SupplierActivity : AppCompatActivity() {
         setupListeners()
         setUpPickUpDate()
         setUpDeliverDate()
+        addMoreInfoVisibility()
     }
 
     private fun setUpPickUpDate() {
@@ -75,7 +72,7 @@ class SupplierActivity : AppCompatActivity() {
         }
     }
 
-    private fun getSupplierInfo(index: Int): String {
+    private fun getSupplierInfo(): String {
         val supplier = Supplier(
             supplierName = supplierName.text.toString().trim(),
             retailerName = retailerName.text.toString().trim(),
@@ -84,50 +81,57 @@ class SupplierActivity : AppCompatActivity() {
             pickUpFrom = pickUpFrom.text.toString().trim(),
             deliverTo = deliverTo.text.toString().trim()
         )
-        val supplierInfo = Gson().toJson(supplier)
-        return convertToJsonString(supplierInfo, index)
+        return Gson().toJson(supplier)
     }
 
-    private fun convertToJsonString(supplierInfo: String, index: Int) =
-        supplierInfo.replace("}", ",\"index\""+":"+"\"$index\""+"}")
 
-    private fun getSupplier(): Supplier {
-        val supplier = Supplier(
-            supplierName = supplierName.text.toString().trim(),
-            retailerName = retailerName.text.toString().trim(),
-            pickUpDate = pickUpDate.text.toString().trim(),
-            deliverDate = deliverDate?.text.toString().trim(),
-            pickUpFrom = pickUpFrom.text.toString().trim(),
-            deliverTo = deliverTo.text.toString().trim()
-        )
-        return supplier
-    }
 
-    private fun saveSupplierInfoAndGetBitmap(index: Int): Bitmap? {
-        val qrCode = QRCodeGenerator()
-        return qrCode.codeGenerator(getSupplierInfo(index))
-    }
+
 
     private fun saveSupplierInfoToBlockChain() {
-        val apiInterface = ApiInterface.create().postSupplierInfo(supplier = getSupplier())
-
-        apiInterface.enqueue( object : Callback<SupplyResponse> {
-            override fun onResponse(call: Call<SupplyResponse>?, response: Response<SupplyResponse>?) {
-                Log.d("MyApp", response.toString())
-                openQRCodeActivity(response?.body()?.index.unWrap())
-            }
-
-            override fun onFailure(call: Call<SupplyResponse>?, t: Throwable?) {
-                Toast.makeText(this@SupplierActivity, t.toString(), Toast.LENGTH_LONG).show()
-            }
-        })
+        openQRCodeActivityORAddMoreInfo()
     }
 
-    private fun openQRCodeActivity(index: Int){
-        val intent = Intent(this, QRCodeActivity::class.java)
-        intent.putExtra("BitmapImage", saveSupplierInfoAndGetBitmap(index))
+    private fun openQRCodeActivityORAddMoreInfo() {
+        if (isAddMoreInfoConditionValid) {
+            saveProductInfoAndProceed()
+        } else {
+            showAlertPopUp()
+        }
+
+    }
+
+    private fun showAlertPopUp() {
+        GenericDialogFragment.showAddMoreInfoErrorDialog(this,
+            { Yes ->
+                if (isManufacturerInfoAdded) {
+                    openRetailer()
+                } else {
+                    openManufacturer()
+                }
+            }) { No ->
+            saveProductInfoAndProceed()
+        }
+    }
+
+    private fun openRetailer() {
+        val intent = Intent(this, RetailerActivity::class.java)
         startActivity(intent)
     }
+
+    private fun openManufacturer() {
+        val intent = Intent(this, ManufacturerActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun saveProductInfoAndProceed() {
+        val intent = Intent(this, QRCodeActivity::class.java)
+        intent.putExtra("BitmapImageData", getSupplierInfo())
+        isSupplierInfoAdded = true
+        startActivity(intent)
+    }
+
+    private fun addMoreInfoVisibility() = addMoreInfo?.visibility(isAddMoreInfoConditionValid)
 }
 
 

@@ -1,11 +1,13 @@
-package com.pg.clubpampers.android.de.supplychainapp
+package com.supplychainapp
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.supplychainapp.R
 import com.budiyev.android.codescanner.*
 import kotlinx.android.synthetic.main.activity_scan_view.*
+
 
 class ScanViewActivity: AppCompatActivity() {
 
