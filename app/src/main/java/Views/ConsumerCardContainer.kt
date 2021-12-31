@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.pg.clubpampers.android.de.supplychainapp.R
+import com.android.supplychainapp.R
 
 class ConsumerCardContainer @JvmOverloads constructor(
     context: Context, attributeSet: AttributeSet? = null,

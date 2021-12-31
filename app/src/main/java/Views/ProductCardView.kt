@@ -5,7 +5,7 @@ import Model.Supplier
 import android.content.Context
 import android.util.AttributeSet
 import androidx.cardview.widget.CardView
-import com.pg.clubpampers.android.de.supplychainapp.R
+import com.android.supplychainapp.R
 import kotlinx.android.synthetic.main.activity_consumer.view.*
 
 class ProductCardView @JvmOverloads constructor(

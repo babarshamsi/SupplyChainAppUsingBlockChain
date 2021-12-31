@@ -14,4 +14,8 @@ fun View.dimen(@DimenRes dimenRes: Int) = resources.getDimension(dimenRes)
 
 const val EMPTY_STRING = ""
 
+fun View.visibility(show: Boolean = true, invisible: Boolean = false) {
+    visibility = if (show) View.VISIBLE else if (invisible) View.INVISIBLE else View.GONE
+}
+
 

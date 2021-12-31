@@ -9,7 +9,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.pg.clubpampers.android.de.supplychainapp"
+        applicationId "com.android.supplychainapp"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1

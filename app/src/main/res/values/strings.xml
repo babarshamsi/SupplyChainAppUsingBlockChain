@@ -2,6 +2,8 @@
     <string name="app_name">SupplyChainApp</string>
 
     <string name="swansea_bold" translatable="false">fonts/swansea_bold</string>
+    <string name="swansea" translatable="false">fonts/swansea</string>
+    <string name="swansea_bold_italic" translatable="false">fonts/swansea_bold_italic</string>
 
     <string name="supplier">Supplier</string>
     <string name="consumer">Consumer</string>
@@ -14,5 +16,10 @@
     <string name="deliver_date">Deliver Date</string>
     <string name="fab_content_desc">Save</string>
     <string name="fab_add_more_info">Add More Info</string>
+
+    <string name="some_info_still_left">Do you want to add more info?</string>
+    <string name="some_info_still_left_info">Some Information Still Left, Do you still want to proceed?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.pg.clubpampers.android.de.supplychainapp"
+    package="com.android.supplychainapp"
     android:targetSandboxVersion="1">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -19,19 +19,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SupplyChainApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ConsumerActivity"></activity>
-        <activity android:name=".QRCodeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.supplychainapp.RetailerActivity"/>
+        <activity android:name="com.supplychainapp.ManufacturerActivity" />
+        <activity android:name="com.supplychainapp.ConsumerActivity" />
+        <activity android:name="com.supplychainapp.QRCodeActivity" />
+        <activity android:name="com.supplychainapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScannedBarcodeActivity" />
-        <activity android:name=".EmailActivity" />
-        <activity android:name=".ScanViewActivity" />
-        <activity android:name=".SupplierActivity" />
+        <activity android:name="com.supplychainapp.ScanViewActivity" />
+        <activity android:name="com.supplychainapp.SupplierActivity" />
     </application>
 
 </manifest>

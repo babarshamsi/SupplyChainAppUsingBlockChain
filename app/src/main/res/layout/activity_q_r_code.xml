@@ -7,7 +7,7 @@
     tools:context=".QRCodeActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/qrCode"
+        android:id="@+id/qrCodeImage"
         android:layout_width="350dp"
         android:layout_height="350dp"/>
 

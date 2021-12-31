@@ -54,5 +54,52 @@
         <item name="android:textSize">@dimen/extra_large_text_size</item>
     </style>
 
+    <style name="DialogHeaderTextStyle" parent="HeaderTextStyle">
+        <item name="android:textSize">@dimen/extra_large_text_size</item>
+        <item name="fontFamily">@string/swansea_bold</item>
+    </style>
+
+    <style name="HeaderTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/coral</item>
+        <item name="android:textSize">@dimen/extra_large_text_size</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/large_space</item>
+        <item name="android:layout_marginBottom">@dimen/large_space</item>
+        <item name="android:lineSpacingExtra">@dimen/general_space</item>
+    </style>
+
+    <style name="DialogContentTextStyle" parent="NormalTextStyle">
+        <item name="android:textSize">@dimen/medium_large_text_size</item>
+        <item name="fontFamily">@string/swansea</item>
+        <item name="android:textColor">@color/coralDark</item>
+        <item name="android:lineSpacingExtra">7sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="NormalTextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/darkGray</item>
+        <item name="android:textSize">@dimen/medium_text_size</item>
+        <item name="android:gravity">center</item>
+        <item name="android:lineSpacingExtra">@dimen/general_space</item>
+    </style>
+
+    <style name="DialogSecondaryContentTextStyle" parent="DialogContentTextStyle">
+        <item name="android:textSize">@dimen/small_large_text_size</item>
+        <item name="fontFamily">@string/swansea</item>
+    </style>
+
+    <style name="TransparentNormalButtonStyle" parent="NormalButtonStyle">
+        <item name="android:background">@drawable/transparent_normal_button_background</item>
+        <item name="android:textColor">@color/coral</item>
+        <item name="android:layout_marginStart">@dimen/large_space</item>
+        <item name="android:layout_marginEnd">@dimen/large_space</item>
+    </style>
+
 
 </resources>

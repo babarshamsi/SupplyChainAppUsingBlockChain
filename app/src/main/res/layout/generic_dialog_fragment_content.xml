@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/general_space"
+    android:paddingTop="@dimen/extra_large_space"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:showIn="@layout/generic_dialog_fragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dialogFragmentIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/extra_large_space"
+        android:visibility="gone"
+        app:layout_goneMarginBottom="0dp"
+        android:scaleType="centerInside"
+        tools:srcCompat="@drawable/ic_error"
+        tools:visibility="visible" />
+
+    <ViewStub
+        android:id="@+id/dialogFragmentExtraViewStub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:inflatedId="@+id/dialogFragmentExtraViewStub" />
+
+    <TextView
+        android:id="@+id/dialogFragmentTitle"
+        style="@style/DialogHeaderTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="@dimen/large_space"
+        android:layout_marginStart="@dimen/large_space"
+        android:layout_marginTop="0dp"
+        android:visibility="invisible"
+        tools:text="dialogFragmentTitle"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/dialogFragmentDescription"
+        style="@style/DialogContentTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/large_space"
+        android:layout_marginStart="@dimen/large_space"
+        android:layout_marginTop="@dimen/extra_large_space"
+        android:lineSpacingExtra="@dimen/general_space"
+        android:visibility="gone"
+        tools:text="dialogFragmentDescription"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/dialogFragmentSecondaryDescription"
+        style="@style/DialogSecondaryContentTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/large_space"
+        android:layout_marginStart="@dimen/large_space"
+        android:layout_marginTop="@dimen/large_space"
+        android:lineSpacingExtra="@dimen/general_space"
+        android:visibility="gone"
+        tools:text="dialogFragmentDescription"
+        tools:visibility="gone" />
+    <ViewStub
+        android:id="@+id/dialogFragmentSecondaryExtraViewStub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:inflatedId="@+id/dialogFragmentSecondaryExtraViewStub" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dialogFragmentPrimaryButton"
+        style="@style/ProminentNormalButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/general_space"
+        android:layout_marginEnd="@dimen/large_space"
+        android:layout_marginStart="@dimen/large_space"
+        android:layout_marginTop="40dp"
+        android:visibility="gone"
+        tools:text="dialogFragmentPrimaryButton"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dialogFragmentSecondaryButton"
+        style="@style/TransparentNormalButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/large_space"
+        android:layout_marginStart="@dimen/large_space"
+        android:visibility="gone"
+        android:textSize="@dimen/medium_large_text_size"
+        tools:text="dialogFragmentSecondaryButton"
+        tools:visibility="visible" />
+</LinearLayout>
