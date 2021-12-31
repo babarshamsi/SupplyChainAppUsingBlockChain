@@ -3,8 +3,21 @@
 
     <dimen name="zero_space">0dp</dimen>
     <dimen name="general_space">8dp</dimen>
-    <dimen name="medium_large_text_size">16sp</dimen>
+    <dimen name="large_space">16dp</dimen>
     <dimen name="extra_large_space">32dp</dimen>
+
+    <dimen name="small_text_size">10sp</dimen>
+    <dimen name="extra_small_medium_text_size">6sp</dimen>
+    <dimen name="small_medium_text_size">12sp</dimen>
+    <dimen name="small_large_text_size">13sp</dimen>
+    <dimen name="medium_text_size">14sp</dimen>
+    <dimen name="normal_medium_text_size">15sp</dimen>
+    <dimen name="medium_large_text_size">16sp</dimen>
+    <dimen name="small_extra_large_text_size">20sp</dimen>
+    <dimen name="extra_large_small_text_size">22sp</dimen>
+    <dimen name="extra_large_text_size">24sp</dimen>
+    <dimen name="extra_medium_large_text_size">32sp</dimen>
+    <dimen name="extra_medium_plus_large_text_size">36sp</dimen>
 
 
 </resources>

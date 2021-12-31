@@ -1,11 +1,13 @@
 package Model.Response
 
+import Model.Supplier
+
 data class ChainObj(
     var index: Int,
     var previousHash: String,
     var proof: Int,
     var timestamp: Double,
-    var transactions: List<Object>
+    var transactions: List<Supplier>
 )
 
 

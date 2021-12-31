@@ -13,5 +13,6 @@
     <string name="pick_up_date">Pick Up Date</string>
     <string name="deliver_date">Deliver Date</string>
     <string name="fab_content_desc">Save</string>
+    <string name="fab_add_more_info">Add More Info</string>
 
 </resources>

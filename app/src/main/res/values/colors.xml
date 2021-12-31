@@ -14,6 +14,7 @@
     <color name="coralDark">#009AEE</color>
     <color name="gray">#B6B6B6</color>
     <color name="darkGray">#A9A9A9</color>
+    <color name="darkerGray">#91a3b0</color>
     <color name="lightGray">#D3D3D3</color>
 
     <color name="mtrl_textinput_default_box_stroke_color">@color/cornFlowerBlue</color>

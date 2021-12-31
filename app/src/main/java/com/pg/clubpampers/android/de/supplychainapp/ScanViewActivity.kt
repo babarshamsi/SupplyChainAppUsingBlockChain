@@ -1,5 +1,6 @@
 package com.pg.clubpampers.android.de.supplychainapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,7 @@ class ScanViewActivity: AppCompatActivity() {
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
+                openScanningResultActivity(it.text)
                 Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
             }
         }
@@ -51,5 +53,11 @@ class ScanViewActivity: AppCompatActivity() {
     override fun onPause() {
         codeScanner.releaseResources()
         super.onPause()
+    }
+
+    private fun openScanningResultActivity(result: String) {
+        val intent = Intent(this, ConsumerActivity::class.java)
+        intent.putExtra("QRImage", result)
+        startActivity(intent)
     }
 }

@@ -1,11 +1,14 @@
 package com.pg.clubpampers.android.de.supplychainapp
 
+import Extensions.unWrap
+import Model.Response.SupplyResponse
 import Model.Supplier
 import Network.ApiInterface
 import Utils.QRCodeGenerator
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -72,7 +75,7 @@ class SupplierActivity : AppCompatActivity() {
         }
     }
 
-    private fun getSupplierInfo(): String {
+    private fun getSupplierInfo(index: Int): String {
         val supplier = Supplier(
             supplierName = supplierName.text.toString().trim(),
             retailerName = retailerName.text.toString().trim(),
@@ -82,8 +85,11 @@ class SupplierActivity : AppCompatActivity() {
             deliverTo = deliverTo.text.toString().trim()
         )
         val supplierInfo = Gson().toJson(supplier)
-        return supplierInfo
+        return convertToJsonString(supplierInfo, index)
     }
+
+    private fun convertToJsonString(supplierInfo: String, index: Int) =
+        supplierInfo.replace("}", ",\"index\""+":"+"\"$index\""+"}")
 
     private fun getSupplier(): Supplier {
         val supplier = Supplier(
@@ -97,28 +103,29 @@ class SupplierActivity : AppCompatActivity() {
         return supplier
     }
 
-    private fun saveSupplierInfoAndGetBitmap(): Bitmap? {
+    private fun saveSupplierInfoAndGetBitmap(index: Int): Bitmap? {
         val qrCode = QRCodeGenerator()
-        return qrCode.codeGenerator(getSupplierInfo())
+        return qrCode.codeGenerator(getSupplierInfo(index))
     }
 
     private fun saveSupplierInfoToBlockChain() {
         val apiInterface = ApiInterface.create().postSupplierInfo(supplier = getSupplier())
 
-        apiInterface.enqueue( object : Callback<Void> {
-            override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
-                    openQRCodeActivity()
+        apiInterface.enqueue( object : Callback<SupplyResponse> {
+            override fun onResponse(call: Call<SupplyResponse>?, response: Response<SupplyResponse>?) {
+                Log.d("MyApp", response.toString())
+                openQRCodeActivity(response?.body()?.index.unWrap())
             }
 
-            override fun onFailure(call: Call<Void>?, t: Throwable?) {
+            override fun onFailure(call: Call<SupplyResponse>?, t: Throwable?) {
                 Toast.makeText(this@SupplierActivity, t.toString(), Toast.LENGTH_LONG).show()
             }
         })
     }
 
-    private fun openQRCodeActivity(){
+    private fun openQRCodeActivity(index: Int){
         val intent = Intent(this, QRCodeActivity::class.java)
-        intent.putExtra("BitmapImage", saveSupplierInfoAndGetBitmap())
+        intent.putExtra("BitmapImage", saveSupplierInfoAndGetBitmap(index))
         startActivity(intent)
     }
 }

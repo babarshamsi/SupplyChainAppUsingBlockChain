@@ -144,14 +144,30 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/saveSupplierButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
+            android:layout_alignParentRight="true"
             android:layout_margin="16dp"
             android:contentDescription="@string/fab_content_desc"
             app:srcCompat="@drawable/ic_save"/>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/addMoreInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/fab_add_more_info"
+            android:text="@string/fab_add_more_info"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 </ScrollView>
