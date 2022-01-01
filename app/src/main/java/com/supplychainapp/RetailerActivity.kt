@@ -1,17 +1,23 @@
 package com.supplychainapp
 
 import Extensions.visibility
-import Model.Manufacturer
+import Model.Response.SupplyResponse
 import Model.Retailer
+import Network.ApiInterface
 import Utils.GenericDialogFragment
 import Utils.SingletonForProduct
+import Utils.SingletonForProduct.isAllInfoHasBeenSaved
 import Utils.isAddMoreInfoConditionValid
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.android.supplychainapp.R
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_supplier.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,8 +29,10 @@ class RetailerActivity : BaseActivity() {
         setupListeners()
         setUpPickUpDate()
         setUpDeliverDate()
-        addMoreInfoVisibility()
+//        addMoreInfoVisibility()
     }
+
+     fun getToolBarTitle() = "Retailer"
 
     private fun setUpPickUpDate() {
         val datePickerForPickUp =
@@ -68,10 +76,58 @@ class RetailerActivity : BaseActivity() {
         saveInfoButton?.setOnClickListener {
             saveSupplierInfoToBlockChain()
         }
+        addMoreInfo?.setOnClickListener {
+            openDesiredScreen()
+        }
+        finishButton?.setOnClickListener {
+            showAlertPopUp()
+        }
+
+        continueButton?.setOnClickListener {
+            SingletonForProduct.isRetailerInfoAdded = true
+            if (isAllInfoHasBeenSaved) {
+                saveProductInfoAndProceed()
+            }
+            else {
+                hitNewTransaction()
+                openDesiredScreen()
+            }
+        }
     }
 
-    private fun getManufacturerInfo(): String {
-        val supplier = Manufacturer(
+    private fun hitNewTransaction() {
+        val apiInterface = ApiInterface.create().postRetailerInfo(getRetailer())
+
+        apiInterface.enqueue(object : Callback<SupplyResponse> {
+            override fun onResponse(
+                call: Call<SupplyResponse>?,
+                response: Response<SupplyResponse>?
+            ) {
+
+                Log.d("MyApp", response.toString())
+            }
+
+            override fun onFailure(call: Call<SupplyResponse>?, t: Throwable?) {
+                Log.d("MyApp", t.toString())
+            }
+        })
+    }
+
+    private fun getRetailer(): Retailer {
+        val retailer = Retailer(
+            senderName = senderName?.text.toString().trim(),
+            receiverName = receiverName?.text.toString().trim(),
+            pickUpDate = pickUpDate?.text.toString().trim(),
+            deliverDate = deliverDate?.text.toString().trim(),
+            pickUpFrom = pickUpFrom?.text.toString().trim(),
+            deliverTo = deliverTo?.text.toString().trim()
+        )
+        return retailer
+    }
+
+
+    private fun getRetailerInfo(): String {
+        val retailer = Retailer(
             senderName = senderName.text.toString().trim(),
             receiverName = receiverName.text.toString().trim(),
             pickUpDate = pickUpDate.text.toString().trim(),
@@ -79,7 +135,7 @@ class RetailerActivity : BaseActivity() {
             pickUpFrom = pickUpFrom.text.toString().trim(),
             deliverTo = deliverTo.text.toString().trim()
         )
-        return Gson().toJson(supplier)
+        return Gson().toJson(retailer)
     }
 
 
@@ -87,11 +143,12 @@ class RetailerActivity : BaseActivity() {
 
 
     private fun saveSupplierInfoToBlockChain() {
+        SingletonForProduct.isRetailerInfoAdded = true
         openQRCodeActivityORAddMoreInfo()
     }
 
     private fun openQRCodeActivityORAddMoreInfo() {
-        if (isAddMoreInfoConditionValid) {
+        if (isAllInfoHasBeenSaved) {
             saveProductInfoAndProceed()
         } else {
             showAlertPopUp()
@@ -102,14 +159,15 @@ class RetailerActivity : BaseActivity() {
     private fun showAlertPopUp() {
         GenericDialogFragment.showAddMoreInfoErrorDialog(this, Retailer().type,
             { Yes ->
-                openDesiredScreen()
+                saveProductInfoAndProceed()
 //                if (SingletonForProduct.isRetailerInfoAdded) {
 //                    openRetailer()
 //                } else {
 //                    openManufacturer()
 //                }
             }) { No ->
-            saveProductInfoAndProceed()
+            // dismiss
+//            saveProductInfoAndProceed()
         }
     }
 
@@ -117,9 +175,6 @@ class RetailerActivity : BaseActivity() {
         if (getProductInfoDecider.screenToOpen() != null) {
             val intent = Intent(this, getProductInfoDecider.screenToOpen())
             startActivity(intent)
-        }
-        else {
-            openQRCodeActivityORAddMoreInfo()
         }
     }
 
@@ -135,7 +190,7 @@ class RetailerActivity : BaseActivity() {
 
     private fun saveProductInfoAndProceed() {
         val intent = Intent(this, QRCodeActivity::class.java)
-        intent.putExtra("BitmapImageData", getManufacturerInfo())
+        intent.putExtra("BitmapImageData", getRetailerInfo())
         SingletonForProduct.isRetailerInfoAdded = true
         startActivity(intent)
     }

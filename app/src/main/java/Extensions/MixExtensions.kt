@@ -5,6 +5,9 @@ import androidx.annotation.DimenRes
 import com.google.android.material.datepicker.DateSelector
 
 const val EMPTY_STRING = ""
+const val MANUFACTURER = "manufacturer"
+const val RETAILER = "retailer"
+const val SUPPLIER = "supplier"
 //const val some_info_still_left = "Alert"
 //const val some_info_still_left_info = "Some Information Still Required On Next Screen, Press Yes to go into next screen OR No to save [TYPE] information"
 const val TYPE_PLACE_HOLDER = "[TYPE]"

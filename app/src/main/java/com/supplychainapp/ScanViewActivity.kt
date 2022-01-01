@@ -1,9 +1,13 @@
 package com.supplychainapp
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.android.supplychainapp.R
 import com.budiyev.android.codescanner.*
 import kotlinx.android.synthetic.main.activity_scan_view.*
@@ -12,10 +16,19 @@ import kotlinx.android.synthetic.main.activity_scan_view.*
 class ScanViewActivity: AppCompatActivity() {
 
     private lateinit var codeScanner: CodeScanner
+    private val MY_CAMERA_REQUEST_CODE = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_view)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            == PackageManager.PERMISSION_DENIED)
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA),
+                MY_CAMERA_REQUEST_CODE
+            );
+
 
         codeScanner = CodeScanner(this, scanner_view)
 
@@ -37,8 +50,10 @@ class ScanViewActivity: AppCompatActivity() {
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
             runOnUiThread {
-                Toast.makeText(this, "Camera initialization error: ${it.message}",
-                    Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this, "Camera initialization error: ${it.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
@@ -61,5 +76,21 @@ class ScanViewActivity: AppCompatActivity() {
         val intent = Intent(this, ConsumerActivity::class.java)
         intent.putExtra("QRImage", result)
         startActivity(intent)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == MY_CAMERA_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show()
+            } else {
+                finish()
+                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }

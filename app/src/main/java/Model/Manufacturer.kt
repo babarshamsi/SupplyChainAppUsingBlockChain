@@ -1,5 +1,7 @@
 package Model
 
+import Extensions.MANUFACTURER
+
 data class Manufacturer(
     var senderName: String = "",
     var receiverName: String = "",
@@ -7,5 +9,5 @@ data class Manufacturer(
     var deliverDate: String = "",
     var pickUpFrom: String = "",
     var deliverTo: String = "",
-    var type: String = "manufacturer"
+    var type: String = MANUFACTURER
 )

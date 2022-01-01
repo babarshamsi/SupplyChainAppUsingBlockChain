@@ -77,12 +77,16 @@ class ConsumerActivity : AppCompatActivity() {
     }
 
     private fun getCurrentTransactions(index: Int, chain: Chain) {
-        val transactions = chain.chain.get(index - 1).transactions
-        supplierInfo?.apply {
-            addInfoCards(transactions)
-            addTransactionCard(transactions)
+        try {
+            val transactions = chain.chain.get(index - 1).transactions
+            supplierInfo?.apply {
+                addInfoCards(transactions)
+                addTransactionCard(transactions)
+            }
         }
-
+        catch (ex: IndexOutOfBoundsException) {
+            Toast.makeText(this, "Some Issue with Indexing", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun addTransactionCard(transactions: List<Supplier>) {

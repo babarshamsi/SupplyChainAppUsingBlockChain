@@ -2,15 +2,22 @@ package com.supplychainapp
 
 import Extensions.visibility
 import Model.Manufacturer
+import Model.Response.SupplyResponse
+import Network.ApiInterface
 import Utils.GenericDialogFragment
 import Utils.SingletonForProduct
+import Utils.SingletonForProduct.isAllInfoHasBeenSaved
 import Utils.isAddMoreInfoConditionValid
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.android.supplychainapp.R
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_supplier.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,8 +28,11 @@ class ManufacturerActivity : BaseActivity() {
         setupListeners()
         setUpPickUpDate()
         setUpDeliverDate()
-        addMoreInfoVisibility()
+//        addMoreInfoVisibility()
     }
+
+     fun getToolBarTitle() = "Manufacturer"
+
 
     private fun setUpPickUpDate() {
         val datePickerForPickUp =
@@ -66,7 +76,55 @@ class ManufacturerActivity : BaseActivity() {
         saveInfoButton?.setOnClickListener {
             saveSupplierInfoToBlockChain()
         }
+        addMoreInfo?.setOnClickListener {
+            openDesiredScreen()
+        }
+        finishButton?.setOnClickListener {
+            showAlertPopUp()
+        }
+
+        continueButton?.setOnClickListener {
+            SingletonForProduct.isManufacturerInfoAdded = true
+            if (isAllInfoHasBeenSaved) {
+                saveProductInfoAndProceed()
+            }
+            else {
+                hitNewTransaction()
+                openDesiredScreen()
+            }
+        }
     }
+
+    private fun hitNewTransaction() {
+        val apiInterface = ApiInterface.create().postManufacturerInfo(getManufacturer())
+
+        apiInterface.enqueue(object : Callback<SupplyResponse> {
+            override fun onResponse(
+                call: Call<SupplyResponse>?,
+                response: Response<SupplyResponse>?
+            ) {
+
+                Log.d("MyApp", response.toString())
+            }
+
+            override fun onFailure(call: Call<SupplyResponse>?, t: Throwable?) {
+                Log.d("MyApp", t.toString())
+            }
+        })
+    }
+
+    private fun getManufacturer(): Manufacturer {
+        val manufacturer = Manufacturer(
+            senderName = senderName?.text.toString().trim(),
+            receiverName = receiverName?.text.toString().trim(),
+            pickUpDate = pickUpDate?.text.toString().trim(),
+            deliverDate = deliverDate?.text.toString().trim(),
+            pickUpFrom = pickUpFrom?.text.toString().trim(),
+            deliverTo = deliverTo?.text.toString().trim()
+        )
+        return manufacturer
+    }
+
 
     private fun getManufacturerInfo(): String {
         val supplier = Manufacturer(
@@ -81,15 +139,13 @@ class ManufacturerActivity : BaseActivity() {
     }
 
 
-
-
-
     private fun saveSupplierInfoToBlockChain() {
+        SingletonForProduct.isManufacturerInfoAdded = true
         openQRCodeActivityORAddMoreInfo()
     }
 
     private fun openQRCodeActivityORAddMoreInfo() {
-        if (isAddMoreInfoConditionValid) {
+        if (isAllInfoHasBeenSaved) {
             saveProductInfoAndProceed()
         } else {
             showAlertPopUp()
@@ -100,14 +156,15 @@ class ManufacturerActivity : BaseActivity() {
     private fun showAlertPopUp() {
         GenericDialogFragment.showAddMoreInfoErrorDialog(this, Manufacturer().type,
             { Yes ->
-                openDesiredScreen()
+                saveProductInfoAndProceed()
 //                if (SingletonForProduct.isRetailerInfoAdded) {
 //                    openRetailer()
 //                } else {
 //                    openManufacturer()
 //                }
             }) { No ->
-            saveProductInfoAndProceed()
+//            dismiss
+//            saveProductInfoAndProceed()
         }
     }
 
@@ -115,9 +172,6 @@ class ManufacturerActivity : BaseActivity() {
         if (getProductInfoDecider.screenToOpen() != null) {
             val intent = Intent(this, getProductInfoDecider.screenToOpen())
             startActivity(intent)
-        }
-        else {
-            openQRCodeActivityORAddMoreInfo()
         }
     }
 
@@ -134,7 +188,6 @@ class ManufacturerActivity : BaseActivity() {
     private fun saveProductInfoAndProceed() {
         val intent = Intent(this, QRCodeActivity::class.java)
         intent.putExtra("BitmapImageData", getManufacturerInfo())
-        SingletonForProduct.isManufacturerInfoAdded = true
         startActivity(intent)
     }
 

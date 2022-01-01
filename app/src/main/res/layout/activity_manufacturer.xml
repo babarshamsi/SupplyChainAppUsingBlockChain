@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/tools"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -147,7 +148,41 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/extra_large_space"
+            >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/finishButton"
+                style="@style/ProminentNormalButtonStyle"
+                android:layout_width="@dimen/button_width"
+                android:layout_gravity="bottom|left"
+                android:layout_marginTop="@dimen/general_space"
+                android:layout_marginBottom="@dimen/zero_space"
+                android:layout_marginStart="@dimen/extra_large_space"
+                android:layout_marginEnd="@dimen/general_space"
+                android:enabled="true"
+                custom:text="finish"
+                android:text="@string/finish" />
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/continueButton"
+                style="@style/ProminentNormalButtonStyle"
+                android:layout_width="@dimen/button_width"
+                android:layout_marginTop="@dimen/general_space"
+                android:layout_marginBottom="@dimen/zero_space"
+                android:layout_marginStart="@dimen/general_space"
+                android:layout_marginEnd="@dimen/extra_large_space"
+                android:layout_alignParentRight="true"
+                android:enabled="true"
+                custom:text="proceed"
+                android:text="@string/proceed" />
+
+
+
+
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/saveInfoButton"
@@ -156,7 +191,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_margin="16dp"
                 android:contentDescription="@string/fab_content_desc"
-                app:srcCompat="@drawable/ic_save"/>
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_save" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/addMoreInfo"
@@ -165,7 +201,8 @@
                 android:layout_gravity="bottom|left"
                 android:layout_margin="16dp"
                 android:contentDescription="@string/fab_add_more_info"
-                android:text="@string/fab_add_more_info"/>
+                android:visibility="gone"
+                android:text="@string/fab_add_more_info" />
 
         </RelativeLayout>
 

@@ -3,12 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    tools:context=".QRCodeActivity">
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.supplychainapp.QRCodeActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/qrCodeImage"
-        android:layout_width="350dp"
-        android:layout_height="350dp"/>
+        android:layout_width="300dp"
+        android:layout_height="300dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/finishButton"
+        style="@style/ProminentNormalButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/extra_large_space"
+        android:layout_marginBottom="@dimen/zero_space"
+        android:layout_marginStart="@dimen/extra_large_space"
+        android:layout_marginEnd="@dimen/extra_large_space"
+        android:enabled="true"
+        custom:text="finish"
+        android:text="@string/finish"
+        tools:text="@string/finish" />
+
+
 
 </LinearLayout>

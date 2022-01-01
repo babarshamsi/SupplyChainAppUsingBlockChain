@@ -167,6 +167,9 @@ class GenericDialogFragment: DialogFragment() {
         dialogFragmentPrimaryButton?.setOnClickListener(
             AutoDismissOnClickListener(primaryButtonClickListener)
         )
+//        dialogFragmentPrimaryButton?.setOnClickListener(
+//            AutoDismissOnClickListener(secondaryButtonClickListener)
+//        )
         if (!TextUtils.isEmpty(secondaryButtonTitle)) {
             dialogFragmentSecondaryButton?.setText(secondaryButtonTitle)
             dialogFragmentSecondaryButton?.setVisibility(View.VISIBLE)

@@ -14,4 +14,9 @@ open class BaseActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //            genericDialogFragment = GenericDialogFragment.showGenericDialog(this, false)
     }
+
+
+//    protected open fun getToolBarTitle(): String{
+//        return EMPTY_STRING
+//    }
 }

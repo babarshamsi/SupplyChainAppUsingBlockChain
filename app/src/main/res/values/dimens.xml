@@ -19,5 +19,7 @@
     <dimen name="extra_medium_large_text_size">32sp</dimen>
     <dimen name="extra_medium_plus_large_text_size">36sp</dimen>
 
+    <dimen name="button_width">120dp</dimen>
+
 
 </resources>

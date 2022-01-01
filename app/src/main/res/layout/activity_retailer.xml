@@ -1,13 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RetailerActivity">
+    xmlns:custom="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <TextView
+    <include
+        layout="@layout/toolbar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="RETAILER"/>
+        android:fillViewport="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/extra_large_space"
+                android:textColorHint="@color/cornFlowerBlue"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/cornFlowerBlue"
+                app:shapeAppearance="@style/Rounded">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/senderName"
+                    style="@style/TextInputLayoutEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/supplier_name"
+                    android:text="Babar" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/extra_large_space"
+                android:textColorHint="@color/cornFlowerBlue"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/cornFlowerBlue"
+                app:shapeAppearance="@style/Rounded">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/receiverName"
+                    style="@style/TextInputLayoutEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/retailer_name"
+                    android:text="Rohail" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/extra_large_space"
+                android:textColorHint="@color/cornFlowerBlue"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/cornFlowerBlue"
+                app:shapeAppearance="@style/Rounded">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pickUpFrom"
+                    style="@style/TextInputLayoutEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/pick_up_from"
+                    android:text="Karachi" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/extra_large_space"
+                android:textColorHint="@color/cornFlowerBlue"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/cornFlowerBlue"
+                app:shapeAppearance="@style/Rounded">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/deliverTo"
+                    style="@style/TextInputLayoutEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/deliver_to"
+                    android:text="Lahore" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/extra_large_space"
+                android:textColorHint="@color/cornFlowerBlue"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/cornFlowerBlue"
+                app:shapeAppearance="@style/Rounded">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pickUpDate"
+                    style="@style/TextInputLayoutEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/pick_up_date"
+                    android:text="12, Dec 2021" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/extra_large_space"
+                android:textColorHint="@color/cornFlowerBlue"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/cornFlowerBlue"
+                app:shapeAppearance="@style/Rounded">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/deliverDate"
+                    style="@style/TextInputLayoutEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/deliver_date"
+                    android:text="31, Dec 2021" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/extra_large_space"
+                >
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/finishButton"
+                    style="@style/ProminentNormalButtonStyle"
+                    android:layout_width="@dimen/button_width"
+                    android:layout_gravity="bottom|left"
+                    android:layout_marginTop="@dimen/general_space"
+                    android:layout_marginBottom="@dimen/zero_space"
+                    android:layout_marginStart="@dimen/extra_large_space"
+                    android:layout_marginEnd="@dimen/general_space"
+                    android:enabled="true"
+                    custom:text="finish"
+                    android:text="@string/finish" />
+
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/continueButton"
+                    style="@style/ProminentNormalButtonStyle"
+                    android:layout_width="@dimen/button_width"
+                    android:layout_marginTop="@dimen/general_space"
+                    android:layout_marginBottom="@dimen/zero_space"
+                    android:layout_marginStart="@dimen/general_space"
+                    android:layout_marginEnd="@dimen/extra_large_space"
+                    android:layout_alignParentRight="true"
+                    android:enabled="true"
+                    custom:text="proceed"
+                    android:text="@string/proceed" />
+
+
+
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/saveInfoButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="16dp"
+                    android:contentDescription="@string/fab_content_desc"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_save" />
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/addMoreInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|left"
+                    android:layout_margin="16dp"
+                    android:contentDescription="@string/fab_add_more_info"
+                    android:visibility="gone"
+                    android:text="@string/fab_add_more_info" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>
