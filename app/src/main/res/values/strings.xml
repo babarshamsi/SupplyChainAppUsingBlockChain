@@ -6,10 +6,13 @@
     <string name="swansea_bold_italic" translatable="false">fonts/swansea_bold_italic</string>
 
     <string name="supplier">Supplier</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="retailer">Retailer</string>
     <string name="consumer">Consumer</string>
 
     <string name="supplier_name">Supplier Name</string>
     <string name="retailer_name">Retailer Name</string>
+    <string name="manufacturer_name">Manufacturer Name</string>
     <string name="pick_up_from">Pick Up From</string>
     <string name="deliver_to">Deliver To</string>
     <string name="pick_up_date">Pick Up Date</string>
@@ -17,8 +20,8 @@
     <string name="fab_content_desc">Save</string>
     <string name="fab_add_more_info">Add More Info</string>
 
-    <string name="some_info_still_left">Do you want to add more info?</string>
-    <string name="some_info_still_left_info">Some Information Still Left, Do you still want to proceed?</string>
+    <string name="some_info_still_left">Alert</string>
+    <string name="some_info_still_left_info">Some Information Still Required On Next Screen, Press Yes to go into next screen OR No to save [TYPE] information</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 

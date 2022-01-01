@@ -18,6 +18,7 @@ import java.util.*
 
 class SupplierActivity : BaseActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_supplier)
@@ -66,15 +67,15 @@ class SupplierActivity : BaseActivity() {
     }
 
     private fun setupListeners() {
-        saveSupplierButton?.setOnClickListener {
+        saveInfoButton?.setOnClickListener {
             saveSupplierInfoToBlockChain()
         }
     }
 
     private fun getSupplierInfo(): String {
         val supplier = Supplier(
-            supplierName = supplierName.text.toString().trim(),
-            retailerName = retailerName.text.toString().trim(),
+            senderName = senderName.text.toString().trim(),
+            receiverName = receiverName.text.toString().trim(),
             pickUpDate = pickUpDate.text.toString().trim(),
             deliverDate = deliverDate?.text.toString().trim(),
             pickUpFrom = pickUpFrom.text.toString().trim(),
@@ -101,15 +102,26 @@ class SupplierActivity : BaseActivity() {
     }
 
     private fun showAlertPopUp() {
-        GenericDialogFragment.showAddMoreInfoErrorDialog(this,
+        GenericDialogFragment.showAddMoreInfoErrorDialog(this, Supplier().type,
             { Yes ->
+                openDesiredScreen()
                 if (isManufacturerInfoAdded) {
-                    openRetailer()
+//                    openRetailer()
                 } else {
-                    openManufacturer()
+//                    openManufacturer()
                 }
             }) { No ->
             saveProductInfoAndProceed()
+        }
+    }
+
+    private fun openDesiredScreen() {
+        if (getProductInfoDecider.screenToOpen() != null) {
+            val intent = Intent(this, getProductInfoDecider.screenToOpen())
+            startActivity(intent)
+        }
+        else {
+            openQRCodeActivityORAddMoreInfo()
         }
     }
 

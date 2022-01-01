@@ -7,8 +7,20 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/white"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/manufacturerButton"
+        style="@style/ProminentNormalButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/extra_large_space"
+        android:layout_marginBottom="@dimen/zero_space"
+        android:layout_marginStart="@dimen/extra_large_space"
+        android:layout_marginEnd="@dimen/extra_large_space"
+        android:enabled="true"
+        custom:text="manufacturer"
+        android:text="@string/manufacturer"
+        tools:text="@string/manufacturer" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/supplierButton"
@@ -22,6 +34,19 @@
         custom:text="supplier"
         android:text="@string/supplier"
         tools:text="@string/supplier" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/retailerButton"
+        style="@style/ProminentNormalButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/extra_large_space"
+        android:layout_marginBottom="@dimen/zero_space"
+        android:layout_marginStart="@dimen/extra_large_space"
+        android:layout_marginEnd="@dimen/extra_large_space"
+        android:enabled="true"
+        custom:text="retailer"
+        android:text="@string/retailer"
+        tools:text="@string/retailer" />
 
 
     <androidx.appcompat.widget.AppCompatButton

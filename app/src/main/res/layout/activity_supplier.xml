@@ -22,7 +22,7 @@
             app:shapeAppearance="@style/Rounded">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/supplierName"
+                android:id="@+id/senderName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Babar"
@@ -43,7 +43,7 @@
             app:shapeAppearance="@style/Rounded">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/retailerName"
+                android:id="@+id/receiverName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rohail"
@@ -150,7 +150,7 @@
             android:orientation="horizontal">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/saveSupplierButton"
+            android:id="@+id/saveInfoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

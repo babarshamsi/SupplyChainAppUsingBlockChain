@@ -5,8 +5,9 @@ import androidx.annotation.DimenRes
 import com.google.android.material.datepicker.DateSelector
 
 const val EMPTY_STRING = ""
-const val some_info_still_left = "Do you want to add more info?"
-const val some_info_still_left_info = "Some Information Still Left, Do you still want to proceed?"
+//const val some_info_still_left = "Alert"
+//const val some_info_still_left_info = "Some Information Still Required On Next Screen, Press Yes to go into next screen OR No to save [TYPE] information"
+const val TYPE_PLACE_HOLDER = "[TYPE]"
 const val yes = "Yes"
 const val no = "No"
 

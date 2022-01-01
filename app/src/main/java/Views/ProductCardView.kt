@@ -22,13 +22,13 @@ class ProductCardView @JvmOverloads constructor(
     private var supplier: String = EMPTY_STRING
         set(value) {
             field = value
-            supplierName?.text = supplier
+            senderName?.text = supplier
         }
 
     private var retailer: String = EMPTY_STRING
         set(value) {
             field = value
-            retailerName?.text = retailer
+            receiverName?.text = retailer
         }
 
     private var pickUp: String = EMPTY_STRING
@@ -56,8 +56,8 @@ class ProductCardView @JvmOverloads constructor(
         }
 
     fun setDataForProductInfoCard(product: Supplier) {
-        supplier = product.supplierName ?: EMPTY_STRING
-        retailer = product.retailerName ?: EMPTY_STRING
+        supplier = product.senderName ?: EMPTY_STRING
+        retailer = product.receiverName ?: EMPTY_STRING
         pickUp = product.pickUpFrom ?: EMPTY_STRING
         delivery = product.deliverTo ?: EMPTY_STRING
         pickUptime = product.pickUpDate ?: EMPTY_STRING

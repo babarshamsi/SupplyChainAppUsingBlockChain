@@ -1,8 +1,7 @@
 package Utils
 
+import Extensions.TYPE_PLACE_HOLDER
 import Extensions.no
-import Extensions.some_info_still_left
-import Extensions.some_info_still_left_info
 import Extensions.yes
 import Utils.UiUtils.Companion.isValidDrawableRes
 import Utils.UiUtils.Companion.isValidLayoutRes
@@ -20,6 +19,7 @@ import android.view.ViewStub
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.android.supplychainapp.R
 import com.supplychainapp.BaseActivity
@@ -232,7 +232,8 @@ class GenericDialogFragment: DialogFragment() {
         }
 
         fun showAddMoreInfoErrorDialog(
-            activity: BaseActivity,
+            activity: AppCompatActivity,
+            type: String,
             primaryButtonClickListener: View.OnClickListener,
             secondaryButtonClickListener: View.OnClickListener
         ): GenericDialogFragment {
@@ -240,8 +241,11 @@ class GenericDialogFragment: DialogFragment() {
                 Builder()
                     .setIconResource(
                         R.drawable.ic_error
-                    ).setDialogTitle(some_info_still_left)
-                    .setDialogDescription(some_info_still_left_info)
+                    )
+                    .setDialogTitle(activity.getString(R.string.some_info_still_left))
+//                    .setDialogTitle(some_info_still_left)
+//                    .setDialogDescription(some_info_still_left_info.replace(TYPE_PLACE_HOLDER,type))
+                    .setDialogDescription(activity.getString(R.string.some_info_still_left_info).replace(TYPE_PLACE_HOLDER,type))
                     .setPrimaryButtonTitle(yes)
                     .setSecondaryButtonTitle(no)
                     .setPrimaryButtonClickListener(primaryButtonClickListener)

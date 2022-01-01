@@ -27,7 +27,7 @@ interface ApiInterface {
 //        var BASE_URL = "https://d1e1-154-192-16-38.ngrok.io"
 //        var BASE_URL = "https://e05b-154-192-16-38.ngrok.io"
 //        var BASE_URL = "https://14a3-111-119-183-44.ngrok.io"
-        var BASE_URL = " http://192.168.0.100:3000/"
+        var BASE_URL = " http://192.168.0.102:3000/"
 
         fun create() : ApiInterface {
 

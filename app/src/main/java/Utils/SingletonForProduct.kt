@@ -10,4 +10,6 @@ object SingletonForProduct {
     var isManufacturerInfoAdded = false
 }
 
-val isAddMoreInfoConditionValid = isSupplierInfoAdded && isRetailerInfoAdded && isManufacturerInfoAdded
+val isAddMoreInfoConditionValid = (isSupplierInfoAdded && isRetailerInfoAdded).not() ||
+        (isSupplierInfoAdded && isManufacturerInfoAdded).not() || (isRetailerInfoAdded && isManufacturerInfoAdded).not()
+

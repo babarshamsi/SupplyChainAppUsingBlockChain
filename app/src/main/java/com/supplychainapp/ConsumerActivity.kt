@@ -28,8 +28,8 @@ class ConsumerActivity : AppCompatActivity() {
     }
 
     private fun setScannedData(supplier: Supplier?) {
-        supplierName?.text = supplier?.supplierName
-        retailerName?.text = supplier?.retailerName
+        senderName?.text = supplier?.senderName
+        receiverName?.text = supplier?.receiverName
         pickUpFrom?.text = supplier?.pickUpFrom
         deliverTo?.text = supplier?.deliverTo
         pickUpDate?.text = supplier?.pickUpDate
