@@ -8,7 +8,6 @@ import Utils.SingletonForProduct.isSupplierInfoAdded
 import Utils.isAddMoreInfoConditionValid
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.android.supplychainapp.R
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.gson.Gson
@@ -17,7 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class SupplierActivity : AppCompatActivity() {
+class SupplierActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

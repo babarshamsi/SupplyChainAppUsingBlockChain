@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
 
     <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
     <color name="whiteSmoke">#F5F5F5</color>
     <color name="cornFlowerBlue">#8CBED6</color>
     <color name="coral">#00ADF2</color>

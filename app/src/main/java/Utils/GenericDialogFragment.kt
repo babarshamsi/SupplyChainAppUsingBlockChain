@@ -1,10 +1,13 @@
 package Utils
 
+import Extensions.no
+import Extensions.some_info_still_left
+import Extensions.some_info_still_left_info
+import Extensions.yes
 import Utils.UiUtils.Companion.isValidDrawableRes
 import Utils.UiUtils.Companion.isValidLayoutRes
 import android.content.DialogInterface
 import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils
@@ -17,9 +20,9 @@ import android.view.ViewStub
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.android.supplychainapp.R
+import com.supplychainapp.BaseActivity
 import kotlinx.android.synthetic.main.generic_dialog_fragment_content.*
 
 class GenericDialogFragment: DialogFragment() {
@@ -63,9 +66,20 @@ class GenericDialogFragment: DialogFragment() {
     ): View? {
         rootView = inflater.inflate(getLayout(), container, false)
         setTransparentBackground()
-        initView()
         applyCancelableFlag()
         return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+            setStyle(STYLE_NO_TITLE, R.style.customAlertDialog)
     }
 
     private fun setTransparentBackground() {
@@ -110,39 +124,39 @@ class GenericDialogFragment: DialogFragment() {
             dialogFragmentSecondaryExtraViewStub?.inflate()
         }
         if (!TextUtils.isEmpty(dialogTitle)) {
-            if (titleFontStyle != 0) {
-                dialogFragmentTitle?.setTypeface(
-                    Typeface.createFromAsset(
-                        context?.assets,
-                        resources.getString(titleFontStyle)
-                    )
-                )
-            }
+//            if (titleFontStyle != 0) {
+//                dialogFragmentTitle?.setTypeface(
+//                    Typeface.createFromAsset(
+//                        context?.assets,
+//                        resources.getString(titleFontStyle)
+//                    )
+//                )
+//            }
 //            dialogFragmentTitle?.setText(replaceEmojiHelper.replaceEmoji(dialogTitle.toString()))
-            dialogFragmentTitle?.setText((dialogTitle.toString()))
-            dialogFragmentTitle?.setVisibility(View.VISIBLE)
+            dialogFragmentTitle.setText((dialogTitle.toString()))
+            dialogFragmentTitle.setVisibility(View.VISIBLE)
         }
         if (!TextUtils.isEmpty(dialogDescription)) {
-            if (descriptionFontStyle != 0) {
-                dialogFragmentDescription?.setTypeface(
-                    Typeface.createFromAsset(
-                        context?.assets,
-                        resources.getString(descriptionFontStyle)
-                    )
-                )
-            }
+//            if (descriptionFontStyle != 0) {
+//                dialogFragmentDescription?.setTypeface(
+//                    Typeface.createFromAsset(
+//                        context?.assets,
+//                        resources.getString(descriptionFontStyle)
+//                    )
+//                )
+//            }
             dialogFragmentDescription?.setText(dialogDescription.toString())
             dialogFragmentDescription?.setVisibility(View.VISIBLE)
         }
         if (!TextUtils.isEmpty(dialogSecondaryDescription)) {
-            if (descriptionSecondaryFontStyle != 0) {
-                dialogFragmentSecondaryDescription?.setTypeface(
-                    Typeface.createFromAsset(
-                        context?.assets,
-                        resources.getString(descriptionSecondaryFontStyle)
-                    )
-                )
-            }
+//            if (descriptionSecondaryFontStyle != 0) {
+//                dialogFragmentSecondaryDescription?.setTypeface(
+//                    Typeface.createFromAsset(
+//                        context?.assets,
+//                        resources.getString(descriptionSecondaryFontStyle)
+//                    )
+//                )
+//            }
             dialogFragmentSecondaryDescription.setText(dialogSecondaryDescription.toString())
             dialogFragmentSecondaryDescription?.setVisibility(View.VISIBLE)
         }
@@ -163,7 +177,7 @@ class GenericDialogFragment: DialogFragment() {
             )
         )
         if (hideTitle) {
-            dialogFragmentTitle?.setVisibility(View.GONE)
+            dialogFragmentTitle?.setVisibility(View.VISIBLE)
             val params = dialogFragmentIcon?.getLayoutParams() as MarginLayoutParams
             params.setMargins(0, 0, 0, 0)
         }
@@ -177,34 +191,66 @@ class GenericDialogFragment: DialogFragment() {
         // nothing to do, should be overridden in sub class
     }
 
+    override fun onCancel(dialog: DialogInterface) {
+        if (onCancelListener != null) {
+            onCancelListener!!.onCancel(dialog)
+            return
+        }
+        super.onCancel(dialog!!)
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        if (onDismissListener != null && dismissable) {
+            onDismissListener!!.onDismiss(dialog)
+            return
+        }
+        if (dismissable) {
+            super.onDismiss(dialog)
+        }
+    }
+
+
 
     companion object {
+
+        fun showGenericDialog(
+            activity: BaseActivity, isCancellable: Boolean
+        ): GenericDialogFragment {
+            var builder  = GenericDialogFragment.Builder()
+//            builder = builder.setDialogTitle(title)
+//            builder = builder.setDialogDescription(desc)
+//            builder = builder.setTitleFontStyle(R.string.bold_font)
+//            builder = builder.setPrimaryButtonTitle(
+//                if (cta.isEmpty()) activity.getTranslatedText("common_close") else cta
+//            )
+//            builder.setPrimaryButtonClickListener(primaryButtonClickListener)
+            builder = builder.setIconResource(R.drawable.ic_error)
+            builder = builder.setCancelable(isCancellable)
+            val dialogFragment: GenericDialogFragment = builder.build()
+            dialogFragment.show(activity.supportFragmentManager, "GenericDialog")
+            return dialogFragment
+        }
+
         fun showAddMoreInfoErrorDialog(
-            activity: AppCompatActivity,
+            activity: BaseActivity,
             primaryButtonClickListener: View.OnClickListener,
             secondaryButtonClickListener: View.OnClickListener
-        ): GenericDialogFragment? {
-            val builder: GenericDialogFragment.Builder =
-                GenericDialogFragment.Builder()
+        ): GenericDialogFragment {
+            val builder: Builder =
+                Builder()
                     .setIconResource(
                         R.drawable.ic_error
-                    ).setDialogTitle(activity.getString(R.string.some_info_still_left))
-                    .setDialogDescription(
-                        activity.getString(R.string.some_info_still_left_info)
-                    )
-                    .setPrimaryButtonTitle(
-                        activity.getString(R.string.yes)
-                    )
-                    .setSecondaryButtonTitle(
-                        activity.getString(R.string.no)
-                    )
+                    ).setDialogTitle(some_info_still_left)
+                    .setDialogDescription(some_info_still_left_info)
+                    .setPrimaryButtonTitle(yes)
+                    .setSecondaryButtonTitle(no)
                     .setPrimaryButtonClickListener(primaryButtonClickListener)
                     .setTitleFontStyle(R.string.swansea_bold)
                     .setDescriptionFontStyle(R.string.swansea)
                     .setSecondaryButtonClickListener(secondaryButtonClickListener)
             val genericDialogFragment: GenericDialogFragment = builder.build()
             genericDialogFragment.show(
-                activity.getSupportFragmentManager(),
+                activity.supportFragmentManager,
                 "incompleteProductInfoErrorDialog"
             )
             return genericDialogFragment

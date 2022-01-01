@@ -11,7 +11,7 @@ class UiUtils {
 
     companion object {
 
-        val UI_TAG = "UI"
+        val UI_TAG = "UI_TAG"
 
         fun isValidDrawableRes(context: Context?, @DrawableRes id: Int): Boolean {
             return try {
