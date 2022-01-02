@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/tools"
-    android:background="@color/white"
+    android:background="@drawable/screen_bg"
     android:orientation="vertical">
 
     <include
@@ -16,6 +16,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/screen_bg"
         android:fillViewport="true">
 
 
@@ -29,10 +30,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/extra_large_space"
-                android:textColorHint="@color/cornFlowerBlue"
+                android:textColorHint="@color/black"
                 app:boxBackgroundMode="outline"
                 app:endIconMode="clear_text"
-                app:endIconTint="@color/cornFlowerBlue"
+                app:endIconTint="@color/black"
                 app:shapeAppearance="@style/Rounded">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -40,8 +41,7 @@
                     style="@style/TextInputLayoutEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/supplier_name"
-                    android:text="Babar" />
+                    android:hint="@string/manufacturer_name" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,8 +61,7 @@
                     style="@style/TextInputLayoutEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/retailer_name"
-                    android:text="Rohail" />
+                    android:hint="@string/supplier_name" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,8 +81,7 @@
                     style="@style/TextInputLayoutEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/pick_up_from"
-                    android:text="Karachi" />
+                    android:hint="@string/pick_up_from" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,8 +101,7 @@
                     style="@style/TextInputLayoutEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/deliver_to"
-                    android:text="Lahore" />
+                    android:hint="@string/deliver_to" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,8 +125,7 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="@string/pick_up_date"
-                    android:text="12, Dec 2021" />
+                    android:hint="@string/pick_up_date" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,8 +149,7 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="@string/deliver_date"
-                    android:text="31, Dec 2021" />
+                    android:hint="@string/deliver_date" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

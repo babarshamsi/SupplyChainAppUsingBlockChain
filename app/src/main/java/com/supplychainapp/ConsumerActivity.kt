@@ -42,9 +42,6 @@ class ConsumerActivity : BaseActivity() {
 
             getBlockChainInfo(index)
 
-//            val gsonFormat = Gson()
-//            val supplier = gsonFormat.fromJson(supplierInfo, Supplier::class.java)
-//            setScannedData(supplier)
 
             Log.d("MyApp", supplierInfo.toString())
         } catch (t: Throwable) {
@@ -64,12 +61,11 @@ class ConsumerActivity : BaseActivity() {
 
                 if(response?.body() != null)
                     getCurrentTransactions(index, response.body() as Chain)
-//                    Toast.makeText(this@ConsumerActivity, response?.body().toString(), Toast.LENGTH_LONG).show()
-//                        recyclerAdapter.setMovieListItems(response.body()!!)
+
             }
 
             override fun onFailure(call: Call<Chain>?, t: Throwable?) {
-                Toast.makeText(this@ConsumerActivity, t.toString(), Toast.LENGTH_LONG).show()
+//                Toast.makeText(this@ConsumerActivity, t.toString(), Toast.LENGTH_LONG).show()
 
             }
         })

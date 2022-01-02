@@ -78,7 +78,7 @@ class WholeSellerActivity : BaseActivity() {
         }
 
         continueButton?.setOnClickListener {
-            SingletonForProduct.isManufacturerInfoAdded = true
+            SingletonForProduct.isWholeSellerInfoAdded = true
             if (isAllInfoHasBeenSaved) {
                 saveProductInfoAndProceed()
             }
@@ -134,7 +134,7 @@ class WholeSellerActivity : BaseActivity() {
 
 
     private fun saveSupplierInfoToBlockChain() {
-        SingletonForProduct.isManufacturerInfoAdded = true
+        SingletonForProduct.isWholeSellerInfoAdded = true
         openQRCodeActivityORAddMoreInfo()
     }
 

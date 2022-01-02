@@ -45,7 +45,7 @@ class ScanViewActivity: AppCompatActivity() {
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
                 openScanningResultActivity(it.text)
-                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+//                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS

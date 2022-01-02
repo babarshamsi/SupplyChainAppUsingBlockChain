@@ -1,6 +1,7 @@
 package Utils
 
 import Extensions.TYPE_PLACE_HOLDER
+import Extensions.capsFirstLetter
 import Extensions.no
 import Extensions.yes
 import Utils.UiUtils.Companion.isValidDrawableRes
@@ -22,7 +23,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.android.supplychainapp.R
-import com.supplychainapp.BaseActivity
 import kotlinx.android.synthetic.main.generic_dialog_fragment_content.*
 
 class GenericDialogFragment: DialogFragment() {
@@ -124,39 +124,14 @@ class GenericDialogFragment: DialogFragment() {
             dialogFragmentSecondaryExtraViewStub?.inflate()
         }
         if (!TextUtils.isEmpty(dialogTitle)) {
-//            if (titleFontStyle != 0) {
-//                dialogFragmentTitle?.setTypeface(
-//                    Typeface.createFromAsset(
-//                        context?.assets,
-//                        resources.getString(titleFontStyle)
-//                    )
-//                )
-//            }
-//            dialogFragmentTitle?.setText(replaceEmojiHelper.replaceEmoji(dialogTitle.toString()))
             dialogFragmentTitle.setText((dialogTitle.toString()))
             dialogFragmentTitle.setVisibility(View.VISIBLE)
         }
         if (!TextUtils.isEmpty(dialogDescription)) {
-//            if (descriptionFontStyle != 0) {
-//                dialogFragmentDescription?.setTypeface(
-//                    Typeface.createFromAsset(
-//                        context?.assets,
-//                        resources.getString(descriptionFontStyle)
-//                    )
-//                )
-//            }
             dialogFragmentDescription?.setText(dialogDescription.toString())
             dialogFragmentDescription?.setVisibility(View.VISIBLE)
         }
         if (!TextUtils.isEmpty(dialogSecondaryDescription)) {
-//            if (descriptionSecondaryFontStyle != 0) {
-//                dialogFragmentSecondaryDescription?.setTypeface(
-//                    Typeface.createFromAsset(
-//                        context?.assets,
-//                        resources.getString(descriptionSecondaryFontStyle)
-//                    )
-//                )
-//            }
             dialogFragmentSecondaryDescription.setText(dialogSecondaryDescription.toString())
             dialogFragmentSecondaryDescription?.setVisibility(View.VISIBLE)
         }
@@ -167,9 +142,6 @@ class GenericDialogFragment: DialogFragment() {
         dialogFragmentPrimaryButton?.setOnClickListener(
             AutoDismissOnClickListener(primaryButtonClickListener)
         )
-//        dialogFragmentPrimaryButton?.setOnClickListener(
-//            AutoDismissOnClickListener(secondaryButtonClickListener)
-//        )
         if (!TextUtils.isEmpty(secondaryButtonTitle)) {
             dialogFragmentSecondaryButton?.setText(secondaryButtonTitle)
             dialogFragmentSecondaryButton?.setVisibility(View.VISIBLE)
@@ -216,24 +188,6 @@ class GenericDialogFragment: DialogFragment() {
 
     companion object {
 
-        fun showGenericDialog(
-            activity: BaseActivity, isCancellable: Boolean
-        ): GenericDialogFragment {
-            var builder  = GenericDialogFragment.Builder()
-//            builder = builder.setDialogTitle(title)
-//            builder = builder.setDialogDescription(desc)
-//            builder = builder.setTitleFontStyle(R.string.bold_font)
-//            builder = builder.setPrimaryButtonTitle(
-//                if (cta.isEmpty()) activity.getTranslatedText("common_close") else cta
-//            )
-//            builder.setPrimaryButtonClickListener(primaryButtonClickListener)
-            builder = builder.setIconResource(R.drawable.ic_error)
-            builder = builder.setCancelable(isCancellable)
-            val dialogFragment: GenericDialogFragment = builder.build()
-            dialogFragment.show(activity.supportFragmentManager, "GenericDialog")
-            return dialogFragment
-        }
-
         fun showAddMoreInfoErrorDialog(
             activity: AppCompatActivity,
             type: String,
@@ -243,12 +197,10 @@ class GenericDialogFragment: DialogFragment() {
             val builder: Builder =
                 Builder()
                     .setIconResource(
-                        R.drawable.ic_error
+                        R.drawable.ic_error_black
                     )
                     .setDialogTitle(activity.getString(R.string.some_info_still_left))
-//                    .setDialogTitle(some_info_still_left)
-//                    .setDialogDescription(some_info_still_left_info.replace(TYPE_PLACE_HOLDER,type))
-                    .setDialogDescription(activity.getString(R.string.some_info_still_left_info).replace(TYPE_PLACE_HOLDER,type))
+                    .setDialogDescription(activity.getString(R.string.some_info_still_left_info).replace(TYPE_PLACE_HOLDER,type.capsFirstLetter()))
                     .setPrimaryButtonTitle(yes)
                     .setSecondaryButtonTitle(no)
                     .setPrimaryButtonClickListener(primaryButtonClickListener)

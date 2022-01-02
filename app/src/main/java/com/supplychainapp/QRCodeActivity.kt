@@ -9,6 +9,7 @@ import Model.Supplier
 import Model.WholeSeller
 import Network.ApiInterface
 import Utils.QRCodeGenerator
+import Utils.SingletonForProduct
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -193,6 +194,9 @@ class QRCodeActivity : AppCompatActivity() {
     private fun startMainActivity() {
         val intent = Intent(applicationContext, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        SingletonForProduct.isRetailerInfoAdded = false
+        SingletonForProduct.isSupplierInfoAdded = false
+        SingletonForProduct.isWholeSellerInfoAdded = false
         startActivity(intent)
     }
 

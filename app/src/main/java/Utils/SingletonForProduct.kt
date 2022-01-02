@@ -1,23 +1,13 @@
 package Utils
 
-import Utils.SingletonForProduct.isManufacturerInfoAdded
-import Utils.SingletonForProduct.isRetailerInfoAdded
-import Utils.SingletonForProduct.isSupplierInfoAdded
-
 object SingletonForProduct {
     var isSupplierInfoAdded = false
     var isRetailerInfoAdded = false
-    var isManufacturerInfoAdded = false
+    var isWholeSellerInfoAdded = false
 
-    var isAllInfoHasBeenSaved = isSupplierInfoAdded && isRetailerInfoAdded && isManufacturerInfoAdded
+    var isAllInfoHasBeenSaved = isSupplierInfoAdded && isRetailerInfoAdded && isWholeSellerInfoAdded
 
-    fun getBoolForIsAllInfoHasBeenSaved() = isSupplierInfoAdded && isRetailerInfoAdded && isManufacturerInfoAdded
-
-
-
+    fun getBoolForIsAllInfoHasBeenSaved() = isSupplierInfoAdded && isRetailerInfoAdded && isWholeSellerInfoAdded
 }
 
-
-val isAddMoreInfoConditionValid = (isSupplierInfoAdded && isRetailerInfoAdded).not() ||
-        (isSupplierInfoAdded && isManufacturerInfoAdded).not() || (isRetailerInfoAdded && isManufacturerInfoAdded).not()
 

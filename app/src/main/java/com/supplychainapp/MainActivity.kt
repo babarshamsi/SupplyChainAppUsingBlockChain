@@ -24,8 +24,6 @@ class MainActivity : BaseActivity() {
         setUpListeners()
         supportActionBar?.title = "Home"
 
-//        toolbar?.setTitle(getToolBarTitle())
-
 
         val CAMERA_PERMISSION_REQUEST_CODE = 2
         val result = ContextCompat.checkSelfPermission(

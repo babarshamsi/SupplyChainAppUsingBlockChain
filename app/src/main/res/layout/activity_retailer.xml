@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/tools"
-    android:background="@color/white"
+    android:background="@drawable/screen_bg"
     android:orientation="vertical">
 
     <include
@@ -40,8 +40,8 @@
                     style="@style/TextInputLayoutEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/supplier_name"
-                    android:text="Babar" />
+                    android:hint="@string/wholeSeller"
+                    android:text="Usman And Comp." />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/retailer_name"
-                    android:text="Rohail" />
+                    android:text="Rohail Coperate" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,7 +129,7 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:hint="@string/pick_up_date"
-                    android:text="12, Dec 2021" />
+                    android:text="21, Jan 2021" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,7 +154,7 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:hint="@string/deliver_date"
-                    android:text="31, Dec 2021" />
+                    android:text="26, Jan 2021" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -14,6 +14,7 @@
     <string name="supplier_name">Supplier Name</string>
     <string name="retailer_name">Retailer Name</string>
     <string name="manufacturer_name">Manufacturer Name</string>
+    <string name="wholeseller_name">WholeSeller Name</string>
     <string name="pick_up_from">Pick Up From</string>
     <string name="deliver_to">Deliver To</string>
     <string name="pick_up_date">Pick Up Date</string>

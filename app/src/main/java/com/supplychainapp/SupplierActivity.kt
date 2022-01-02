@@ -7,8 +7,8 @@ import Model.Supplier
 import Network.ApiInterface
 import Utils.GenericDialogFragment
 import Utils.SingletonForProduct.isAllInfoHasBeenSaved
-import Utils.SingletonForProduct.isManufacturerInfoAdded
 import Utils.SingletonForProduct.isSupplierInfoAdded
+import Utils.SingletonForProduct.isWholeSellerInfoAdded
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -157,7 +157,7 @@ class SupplierActivity : BaseActivity() {
                 saveProductInfoAndProceed()
 
 //                openDesiredScreen()
-                if (isManufacturerInfoAdded) {
+                if (isWholeSellerInfoAdded) {
 //                    openRetailer()
                 } else {
 //                    openManufacturer()

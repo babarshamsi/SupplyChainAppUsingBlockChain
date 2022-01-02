@@ -130,15 +130,6 @@ class RetailerActivity : BaseActivity() {
         return Gson().toJson(retailer)
     }
 
-
-
-
-
-    private fun saveSupplierInfoToBlockChain() {
-        SingletonForProduct.isRetailerInfoAdded = true
-        openQRCodeActivityORAddMoreInfo()
-    }
-
     private fun openQRCodeActivityORAddMoreInfo() {
         if (isAllInfoHasBeenSaved) {
             saveProductInfoAndProceed()

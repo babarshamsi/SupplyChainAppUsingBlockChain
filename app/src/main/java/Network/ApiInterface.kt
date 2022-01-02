@@ -34,11 +34,8 @@ interface ApiInterface {
 
     companion object {
 
-//        var BASE_URL = "https://840a-154-192-16-38.ngrok.io/"
-//        var BASE_URL = "https://d1e1-154-192-16-38.ngrok.io"
-//        var BASE_URL = "https://e05b-154-192-16-38.ngrok.io"
-//        var BASE_URL = "https://14a3-111-119-183-44.ngrok.io"
-        var BASE_URL = "http://192.168.0.102:3000/"
+        var BASE_URL = "https://9ba4-119-152-59-80.ngrok.io"
+//        var BASE_URL = "http://192.168.0.102:3000/"
 
         fun create() : ApiInterface {
 

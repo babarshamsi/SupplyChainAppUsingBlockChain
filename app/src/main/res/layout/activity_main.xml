@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@drawable/screen_bg"
     xmlns:custom="http://schemas.android.com/apk/res-auto">
 
    <include
@@ -30,7 +30,7 @@
      <View
          android:layout_width="0dp"
          android:layout_weight="1"
-         android:background="@color/darkerGray"
+         android:background="@color/black"
          android:layout_height="1dp"/>
 
       <TextView
@@ -38,13 +38,13 @@
           android:layout_height="20dp"
           android:gravity="center"
           android:layout_marginHorizontal="@dimen/general_space"
-          android:textColor="@color/darkerGray"
+          android:textColor="@color/black"
           android:text="Add Product Information"/>
 
       <View
           android:layout_width="0dp"
           android:layout_weight="1"
-          android:background="@color/darkerGray"
+          android:background="@color/black"
           android:layout_height="1dp"/>
 
      </LinearLayout>
@@ -99,7 +99,7 @@
       <View
           android:layout_width="0dp"
           android:layout_weight="1"
-          android:background="@color/darkerGray"
+          android:background="@color/black"
           android:layout_height="1dp"/>
 
       <TextView
@@ -107,13 +107,13 @@
           android:layout_height="20dp"
           android:gravity="center"
           android:layout_marginHorizontal="@dimen/general_space"
-          android:textColor="@color/darkerGray"
+          android:textColor="@color/black"
           android:text="Scan Product"/>
 
       <View
           android:layout_width="0dp"
           android:layout_weight="1"
-          android:background="@color/darkerGray"
+          android:background="@color/black"
           android:layout_height="1dp"/>
 
      </LinearLayout>
