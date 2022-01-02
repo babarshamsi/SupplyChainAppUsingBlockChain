@@ -21,15 +21,18 @@ class ConsumerCardContainer @JvmOverloads constructor(
 
     fun addInfoCards(productInfoList: List<Supplier>) {
         removeAllViews()
-        productInfoList.forEachIndexed { _ , productItemInfo ->
+        productInfoList.forEachIndexed { index , productItemInfo ->
             addView(ProductCardView(context).apply {
-//                tag = index
                 setDataForProductInfoCard(productItemInfo)
 
             })
             addView(View(context).apply {
-                layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        dimenInInteger(R.dimen.general_space))
+                if (index != productInfoList.size - 1 ) {
+                    layoutParams = ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        dimenInInteger(R.dimen.large_space)
+                    )
+                }
             })
         }
     }

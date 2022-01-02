@@ -6,7 +6,6 @@ import Network.ApiInterface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.android.supplychainapp.R
 import kotlinx.android.synthetic.main.activity_consumer.*
 import org.json.JSONObject
@@ -14,7 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ConsumerActivity : AppCompatActivity() {
+class ConsumerActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_consumer)
@@ -28,12 +27,12 @@ class ConsumerActivity : AppCompatActivity() {
     }
 
     private fun setScannedData(supplier: Supplier?) {
-        senderName?.text = supplier?.senderName
-        receiverName?.text = supplier?.receiverName
-        pickUpFrom?.text = supplier?.pickUpFrom
-        deliverTo?.text = supplier?.deliverTo
-        pickUpDate?.text = supplier?.pickUpDate
-        deliverDate?.text = supplier?.deliverDate
+//        senderName?.text = supplier?.senderName
+//        receiverName?.text = supplier?.receiverName
+//        pickUpFrom?.text = supplier?.pickUpFrom
+//        deliverTo?.text = supplier?.deliverTo
+//        pickUpDate?.text = supplier?.pickUpDate
+//        deliverDate?.text = supplier?.deliverDate
     }
 
     private fun convertJSONData(supplierInfo: String?) {
@@ -81,15 +80,10 @@ class ConsumerActivity : AppCompatActivity() {
             val transactions = chain.chain.get(index - 1).transactions
             supplierInfo?.apply {
                 addInfoCards(transactions)
-                addTransactionCard(transactions)
             }
         }
         catch (ex: IndexOutOfBoundsException) {
             Toast.makeText(this, "Some Issue with Indexing", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun addTransactionCard(transactions: List<Supplier>) {
-
     }
 }

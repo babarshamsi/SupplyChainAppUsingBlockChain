@@ -1,6 +1,7 @@
 package com.supplychainapp
 
-import Extensions.visibility
+import Extensions.SUPPLIER
+import Extensions.capsFirstLetter
 import Model.Response.SupplyResponse
 import Model.Supplier
 import Network.ApiInterface
@@ -8,7 +9,6 @@ import Utils.GenericDialogFragment
 import Utils.SingletonForProduct.isAllInfoHasBeenSaved
 import Utils.SingletonForProduct.isManufacturerInfoAdded
 import Utils.SingletonForProduct.isSupplierInfoAdded
-import Utils.isAddMoreInfoConditionValid
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -29,14 +29,11 @@ class SupplierActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_supplier)
-//        toolbar?.setTitle(getToolBarTitle())
+        supportActionBar?.title = SUPPLIER.capsFirstLetter()
         setupListeners()
         setUpPickUpDate()
         setUpDeliverDate()
-//        addMoreInfoVisibility()
     }
-
-    fun getToolBarTitle() = "Supplier"
 
     private fun setUpPickUpDate() {
         val datePickerForPickUp =
@@ -77,12 +74,6 @@ class SupplierActivity : BaseActivity() {
     }
 
     private fun setupListeners() {
-        saveInfoButton?.setOnClickListener {
-            saveSupplierInfoToBlockChain()
-        }
-        addMoreInfo?.setOnClickListener {
-            openDesiredScreen()
-        }
 
         finishButton?.setOnClickListener {
             showAlertPopUp()
@@ -190,7 +181,7 @@ class SupplierActivity : BaseActivity() {
     }
 
     private fun openManufacturer() {
-        val intent = Intent(this, ManufacturerActivity::class.java)
+        val intent = Intent(this, WholeSellerActivity::class.java)
         startActivity(intent)
     }
 
@@ -200,8 +191,6 @@ class SupplierActivity : BaseActivity() {
         isSupplierInfoAdded = true
         startActivity(intent)
     }
-
-    private fun addMoreInfoVisibility() = addMoreInfo?.visibility(isAddMoreInfoConditionValid)
 }
 
 

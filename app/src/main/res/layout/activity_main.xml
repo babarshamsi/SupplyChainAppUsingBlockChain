@@ -20,18 +20,34 @@
         android:orientation="vertical"
         android:gravity="center">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/manufacturerButton"
-        style="@style/ProminentNormalButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/extra_large_space"
-        android:layout_marginBottom="@dimen/zero_space"
-        android:layout_marginStart="@dimen/extra_large_space"
-        android:layout_marginEnd="@dimen/extra_large_space"
-        android:enabled="true"
-        custom:text="manufacturer"
-        android:text="@string/manufacturer"
-        tools:text="@string/manufacturer" />
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:gravity="center"
+         android:layout_marginHorizontal="@dimen/extra_large_space">
+
+     <View
+         android:layout_width="0dp"
+         android:layout_weight="1"
+         android:background="@color/darkerGray"
+         android:layout_height="1dp"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="20dp"
+          android:gravity="center"
+          android:layout_marginHorizontal="@dimen/general_space"
+          android:textColor="@color/darkerGray"
+          android:text="Add Product Information"/>
+
+      <View
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:background="@color/darkerGray"
+          android:layout_height="1dp"/>
+
+     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/supplierButton"
@@ -46,6 +62,19 @@
         android:text="@string/supplier"
         tools:text="@string/supplier" />
 
+     <androidx.appcompat.widget.AppCompatButton
+         android:id="@+id/wholeSellerButton"
+         style="@style/ProminentNormalButtonStyle"
+         android:layout_width="match_parent"
+         android:layout_marginTop="@dimen/extra_large_space"
+         android:layout_marginBottom="@dimen/zero_space"
+         android:layout_marginStart="@dimen/extra_large_space"
+         android:layout_marginEnd="@dimen/extra_large_space"
+         android:enabled="true"
+         custom:text="wholeSeller"
+         android:text="@string/wholeSeller"
+         tools:text="@string/wholeSeller" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/retailerButton"
         style="@style/ProminentNormalButtonStyle"
@@ -59,8 +88,39 @@
         android:text="@string/retailer"
         tools:text="@string/retailer" />
 
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:gravity="center"
+         android:layout_marginTop="@dimen/extra_large_space"
+         android:layout_marginHorizontal="@dimen/extra_large_space">
 
-    <androidx.appcompat.widget.AppCompatButton
+      <View
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:background="@color/darkerGray"
+          android:layout_height="1dp"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="20dp"
+          android:gravity="center"
+          android:layout_marginHorizontal="@dimen/general_space"
+          android:textColor="@color/darkerGray"
+          android:text="Scan Product"/>
+
+      <View
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:background="@color/darkerGray"
+          android:layout_height="1dp"/>
+
+     </LinearLayout>
+
+
+
+     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/consumerButton"
         style="@style/ProminentNormalButtonStyle"
         android:layout_width="match_parent"
@@ -72,6 +132,8 @@
         custom:text="consumer"
         android:text="@string/consumer"
         tools:text="@string/consumer" />
+
+
     <Button
         android:id="@+id/btnScanBarcode"
         android:layout_width="300dp"

@@ -22,7 +22,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setUpListeners()
-        supportActionBar?.setTitle("Home")
+        supportActionBar?.title = "Home"
 
 //        toolbar?.setTitle(getToolBarTitle())
 
@@ -70,15 +70,13 @@ class MainActivity : BaseActivity() {
         }
     }
 
-     fun getToolBarTitle() = "Home"
-
     private fun setUpListeners() {
         consumerButton?.setOnClickListener {
             startActivity(Intent(this@MainActivity, ScanViewActivity::class.java))
         }
 
-        manufacturerButton?.setOnClickListener {
-            startActivity(Intent(this@MainActivity, ManufacturerActivity::class.java))
+        wholeSellerButton?.setOnClickListener {
+            startActivity(Intent(this@MainActivity, WholeSellerActivity::class.java))
         }
 
         supplierButton?.setOnClickListener {

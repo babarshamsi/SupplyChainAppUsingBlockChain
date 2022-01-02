@@ -1,13 +1,13 @@
 package com.supplychainapp
 
-import Extensions.visibility
-import Model.Manufacturer
+import Extensions.WHOLESELER
+import Extensions.capsFirstLetter
 import Model.Response.SupplyResponse
+import Model.WholeSeller
 import Network.ApiInterface
 import Utils.GenericDialogFragment
 import Utils.SingletonForProduct
 import Utils.SingletonForProduct.isAllInfoHasBeenSaved
-import Utils.isAddMoreInfoConditionValid
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -21,14 +21,14 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ManufacturerActivity : BaseActivity() {
+class WholeSellerActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manufacturer)
+        setContentView(R.layout.activity_wholeseller)
+        supportActionBar?.title = WHOLESELER.capsFirstLetter()
         setupListeners()
         setUpPickUpDate()
         setUpDeliverDate()
-//        addMoreInfoVisibility()
     }
 
      fun getToolBarTitle() = "Manufacturer"
@@ -73,12 +73,6 @@ class ManufacturerActivity : BaseActivity() {
     }
 
     private fun setupListeners() {
-        saveInfoButton?.setOnClickListener {
-            saveSupplierInfoToBlockChain()
-        }
-        addMoreInfo?.setOnClickListener {
-            openDesiredScreen()
-        }
         finishButton?.setOnClickListener {
             showAlertPopUp()
         }
@@ -96,7 +90,7 @@ class ManufacturerActivity : BaseActivity() {
     }
 
     private fun hitNewTransaction() {
-        val apiInterface = ApiInterface.create().postManufacturerInfo(getManufacturer())
+        val apiInterface = ApiInterface.create().postWholeSellerInfo(getWholeSeller())
 
         apiInterface.enqueue(object : Callback<SupplyResponse> {
             override fun onResponse(
@@ -113,8 +107,8 @@ class ManufacturerActivity : BaseActivity() {
         })
     }
 
-    private fun getManufacturer(): Manufacturer {
-        val manufacturer = Manufacturer(
+    private fun getWholeSeller(): WholeSeller {
+        val wholeSeller = WholeSeller(
             senderName = senderName?.text.toString().trim(),
             receiverName = receiverName?.text.toString().trim(),
             pickUpDate = pickUpDate?.text.toString().trim(),
@@ -122,12 +116,12 @@ class ManufacturerActivity : BaseActivity() {
             pickUpFrom = pickUpFrom?.text.toString().trim(),
             deliverTo = deliverTo?.text.toString().trim()
         )
-        return manufacturer
+        return wholeSeller
     }
 
 
-    private fun getManufacturerInfo(): String {
-        val supplier = Manufacturer(
+    private fun getWholeSellerInfo(): String {
+        val supplier = WholeSeller(
             senderName = senderName.text.toString().trim(),
             receiverName = receiverName.text.toString().trim(),
             pickUpDate = pickUpDate.text.toString().trim(),
@@ -154,17 +148,11 @@ class ManufacturerActivity : BaseActivity() {
     }
 
     private fun showAlertPopUp() {
-        GenericDialogFragment.showAddMoreInfoErrorDialog(this, Manufacturer().type,
+        GenericDialogFragment.showAddMoreInfoErrorDialog(this, WholeSeller().type,
             { Yes ->
                 saveProductInfoAndProceed()
-//                if (SingletonForProduct.isRetailerInfoAdded) {
-//                    openRetailer()
-//                } else {
-//                    openManufacturer()
-//                }
             }) { No ->
 //            dismiss
-//            saveProductInfoAndProceed()
         }
     }
 
@@ -175,23 +163,12 @@ class ManufacturerActivity : BaseActivity() {
         }
     }
 
-    private fun openRetailer() {
-        val intent = Intent(this, RetailerActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openManufacturer() {
-        val intent = Intent(this, ManufacturerActivity::class.java)
-        startActivity(intent)
-    }
-
     private fun saveProductInfoAndProceed() {
         val intent = Intent(this, QRCodeActivity::class.java)
-        intent.putExtra("BitmapImageData", getManufacturerInfo())
+        intent.putExtra("BitmapImageData", getWholeSellerInfo())
         startActivity(intent)
     }
 
-    private fun addMoreInfoVisibility() = addMoreInfo?.visibility(isAddMoreInfoConditionValid)
 }
 
 

@@ -1,12 +1,13 @@
 package Views
 
-import Extensions.EMPTY_STRING
+import Extensions.*
 import Model.Supplier
 import android.content.Context
 import android.util.AttributeSet
 import androidx.cardview.widget.CardView
 import com.android.supplychainapp.R
-import kotlinx.android.synthetic.main.activity_consumer.view.*
+import kotlinx.android.synthetic.main.card_view_for_product_information.view.*
+
 
 class ProductCardView @JvmOverloads constructor(
     context: Context, attributeSet: AttributeSet? = null,
@@ -15,8 +16,14 @@ class ProductCardView @JvmOverloads constructor(
 
 
     init {
-        inflate(context, R.layout.activity_consumer, this)
-//        orientation = VERTICAL
+        inflate(context, R.layout.card_view_for_product_information, this)
+        setBackgroundColor(context.resources.getColor(R.color.black))
+    }
+
+    private var type: String = EMPTY_STRING
+    set(value) {
+        field = value
+        typeName?.text = type
     }
 
     private var supplier: String = EMPTY_STRING
@@ -56,12 +63,29 @@ class ProductCardView @JvmOverloads constructor(
         }
 
     fun setDataForProductInfoCard(product: Supplier) {
-        supplier = product.senderName ?: EMPTY_STRING
-        retailer = product.receiverName ?: EMPTY_STRING
-        pickUp = product.pickUpFrom ?: EMPTY_STRING
-        delivery = product.deliverTo ?: EMPTY_STRING
-        pickUptime = product.pickUpDate ?: EMPTY_STRING
-        deliverTime = product.deliverDate ?: EMPTY_STRING
+        setSenderAndReceiverTypes(product)
+        type = product.type.capsFirstLetter()
+        supplier = product.senderName
+        retailer = product.receiverName
+        pickUp = product.pickUpFrom
+        delivery = product.deliverTo
+        pickUptime = product.pickUpDate
+        deliverTime = product.deliverDate
+    }
+
+    private fun setSenderAndReceiverTypes(product: Supplier) {
+        if (product.type.equals(SUPPLIER)) {
+            senderType?.text = MANUFACTURER.capsFirstLetter()
+            receiverType?.text = SUPPLIER.capsFirstLetter()
+        }
+        else if (product.type.equals(WHOLESELER)) {
+            senderType?.text = SUPPLIER.capsFirstLetter()
+            receiverType?.text = WHOLESELER.capsFirstLetter()
+        }
+        else if (product.type.equals(RETAILER)) {
+            senderType?.text = WHOLESELER.capsFirstLetter()
+            receiverType?.text = RETAILER.capsFirstLetter()
+        }
     }
 
 }

@@ -6,6 +6,7 @@ import com.google.android.material.datepicker.DateSelector
 
 const val EMPTY_STRING = ""
 const val MANUFACTURER = "manufacturer"
+const val WHOLESELER = "wholeSeller"
 const val RETAILER = "retailer"
 const val SUPPLIER = "supplier"
 //const val some_info_still_left = "Alert"
@@ -28,5 +29,7 @@ fun View.dimen(@DimenRes dimenRes: Int) = resources.getDimension(dimenRes)
 fun View.visibility(show: Boolean = true, invisible: Boolean = false) {
     visibility = if (show) View.VISIBLE else if (invisible) View.INVISIBLE else View.GONE
 }
+
+fun String.capsFirstLetter() = this.substring(0, 1).toUpperCase() + this.substring(1).toLowerCase()
 
 

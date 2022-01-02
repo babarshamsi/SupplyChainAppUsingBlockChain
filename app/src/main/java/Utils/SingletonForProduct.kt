@@ -11,6 +11,10 @@ object SingletonForProduct {
 
     var isAllInfoHasBeenSaved = isSupplierInfoAdded && isRetailerInfoAdded && isManufacturerInfoAdded
 
+    fun getBoolForIsAllInfoHasBeenSaved() = isSupplierInfoAdded && isRetailerInfoAdded && isManufacturerInfoAdded
+
+
+
 }
 
 

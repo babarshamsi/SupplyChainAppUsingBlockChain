@@ -3,9 +3,9 @@ package Utils
 import Utils.SingletonForProduct.isManufacturerInfoAdded
 import Utils.SingletonForProduct.isRetailerInfoAdded
 import Utils.SingletonForProduct.isSupplierInfoAdded
-import com.supplychainapp.ManufacturerActivity
 import com.supplychainapp.RetailerActivity
 import com.supplychainapp.SupplierActivity
+import com.supplychainapp.WholeSellerActivity
 
 class GetProductInfoDecider {
 
@@ -13,7 +13,7 @@ class GetProductInfoDecider {
 
     fun screenToOpen(): Class<*>? {
         if (!isManufacturerInfoAdded) {
-            return ManufacturerActivity::class.java
+            return WholeSellerActivity::class.java
         }
         else if (!isSupplierInfoAdded) {
             return SupplierActivity::class.java

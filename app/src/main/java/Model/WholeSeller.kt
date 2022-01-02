@@ -1,13 +1,13 @@
 package Model
 
-import Extensions.MANUFACTURER
+import Extensions.WHOLESELER
 
-data class Manufacturer(
+data class WholeSeller(
     var senderName: String = "",
     var receiverName: String = "",
     var pickUpDate: String = "",
     var deliverDate: String = "",
     var pickUpFrom: String = "",
     var deliverTo: String = "",
-    var type: String = MANUFACTURER
+    var type: String = WHOLESELER
 )

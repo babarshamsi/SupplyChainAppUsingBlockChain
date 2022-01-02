@@ -20,7 +20,7 @@
         android:theme="@style/Theme.SupplyChainApp"
         android:usesCleartextTraffic="true">
         <activity android:name="com.supplychainapp.RetailerActivity"/>
-        <activity android:name="com.supplychainapp.ManufacturerActivity" />
+        <activity android:name="com.supplychainapp.WholeSellerActivity" />
         <activity android:name="com.supplychainapp.ConsumerActivity" />
         <activity android:name="com.supplychainapp.QRCodeActivity" />
         <activity android:name="com.supplychainapp.MainActivity">

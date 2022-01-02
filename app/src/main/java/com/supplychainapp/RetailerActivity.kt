@@ -1,13 +1,14 @@
 package com.supplychainapp
 
-import Extensions.visibility
+import Extensions.RETAILER
+import Extensions.capsFirstLetter
 import Model.Response.SupplyResponse
 import Model.Retailer
 import Network.ApiInterface
 import Utils.GenericDialogFragment
 import Utils.SingletonForProduct
+import Utils.SingletonForProduct.getBoolForIsAllInfoHasBeenSaved
 import Utils.SingletonForProduct.isAllInfoHasBeenSaved
-import Utils.isAddMoreInfoConditionValid
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -25,14 +26,11 @@ class RetailerActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_retailer)
-
+        supportActionBar?.title = RETAILER.capsFirstLetter()
         setupListeners()
         setUpPickUpDate()
         setUpDeliverDate()
-//        addMoreInfoVisibility()
     }
-
-     fun getToolBarTitle() = "Retailer"
 
     private fun setUpPickUpDate() {
         val datePickerForPickUp =
@@ -73,19 +71,13 @@ class RetailerActivity : BaseActivity() {
     }
 
     private fun setupListeners() {
-        saveInfoButton?.setOnClickListener {
-            saveSupplierInfoToBlockChain()
-        }
-        addMoreInfo?.setOnClickListener {
-            openDesiredScreen()
-        }
         finishButton?.setOnClickListener {
             showAlertPopUp()
         }
 
         continueButton?.setOnClickListener {
             SingletonForProduct.isRetailerInfoAdded = true
-            if (isAllInfoHasBeenSaved) {
+            if (getBoolForIsAllInfoHasBeenSaved()) {
                 saveProductInfoAndProceed()
             }
             else {
@@ -184,7 +176,7 @@ class RetailerActivity : BaseActivity() {
     }
 
     private fun openManufacturer() {
-        val intent = Intent(this, ManufacturerActivity::class.java)
+        val intent = Intent(this, WholeSellerActivity::class.java)
         startActivity(intent)
     }
 
@@ -194,8 +186,6 @@ class RetailerActivity : BaseActivity() {
         SingletonForProduct.isRetailerInfoAdded = true
         startActivity(intent)
     }
-
-    private fun addMoreInfoVisibility() = addMoreInfo?.visibility(isAddMoreInfoConditionValid)
 }
 
 

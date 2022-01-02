@@ -1,10 +1,10 @@
 package Network
 
-import Model.Manufacturer
 import Model.Response.Chain
 import Model.Response.SupplyResponse
 import Model.Retailer
 import Model.Supplier
+import Model.WholeSeller
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -24,7 +24,7 @@ interface ApiInterface {
     fun postSupplierInfo(@Body supplier: Supplier): Call<SupplyResponse>
 
     @POST("transactions/new")
-    fun postManufacturerInfo(@Body manufacturer: Manufacturer): Call<SupplyResponse>
+    fun postWholeSellerInfo(@Body manufacturer: WholeSeller): Call<SupplyResponse>
 
     @POST("transactions/new")
     fun postRetailerInfo(@Body retailer: Retailer): Call<SupplyResponse>

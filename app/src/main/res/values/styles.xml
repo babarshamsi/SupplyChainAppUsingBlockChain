@@ -108,5 +108,21 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="TextFieldStyleForConsumerFields" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/darkerGray</item>
+        <item name="android:textSize">@dimen/small_extra_large_text_size</item>
+    </style>
+
+    <style name="TextFieldStyleForConsumerInfo" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/coral</item>
+        <item name="android:textSize">@dimen/medium_large_text_size</item>
+    </style>
+
+    <style name="TextTypeStyle" parent = "Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/coralDark</item>
+        <item name="android:textSize">@dimen/extra_large_text_size</item>
+
+    </style>
+
 
 </resources>

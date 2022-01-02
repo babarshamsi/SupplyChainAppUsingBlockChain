@@ -3,10 +3,10 @@ package com.supplychainapp
 import Extensions.MANUFACTURER
 import Extensions.SUPPLIER
 import Extensions.unWrap
-import Model.Manufacturer
 import Model.Response.SupplyResponse
 import Model.Retailer
 import Model.Supplier
+import Model.WholeSeller
 import Network.ApiInterface
 import Utils.QRCodeGenerator
 import android.content.Intent
@@ -47,15 +47,15 @@ class QRCodeActivity : AppCompatActivity() {
         return Supplier()
     }
 
-    private fun getManufacturer(productInfo: String?): Manufacturer {
+    private fun getManufacturer(productInfo: String?): WholeSeller {
         try {
             val obj = JSONObject(productInfo)
             val gson = Gson()
-            return gson.fromJson(obj.toString(), Manufacturer::class.java)
+            return gson.fromJson(obj.toString(), WholeSeller::class.java)
         } catch (t: Throwable) {
             Log.e("My App", "Could not parse malformed JSON: \"" + "\"")
         }
-        return Manufacturer()
+        return WholeSeller()
     }
 
     private fun getRetailer(productInfo: String?): Retailer {
@@ -73,7 +73,21 @@ class QRCodeActivity : AppCompatActivity() {
         val qrCode = QRCodeGenerator()
         qrCodeImage?.setImageBitmap(qrCode.codeGenerator(supplierInfo))
         // when flow gets completed we will do mining
-        ApiInterface.create().doMining()
+       val apiInterface = ApiInterface.create().doMining()
+
+        apiInterface.enqueue(object : Callback<Void> {
+            override fun onResponse(
+                call: Call<Void>?,
+                response: Response<Void>?
+            ) {
+
+                Log.d("MyApp", response.toString())
+            }
+
+            override fun onFailure(call: Call<Void>?, t: Throwable?) {
+                Toast.makeText(this@QRCodeActivity, t.toString(), Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun convertToJsonStringWithIndex(supplierInfo: String, index: Int) =
@@ -121,7 +135,7 @@ class QRCodeActivity : AppCompatActivity() {
         })
     }
     private fun hitManufacturerApi(productInfo: String) {
-        val apiInterface = ApiInterface.create().postManufacturerInfo(getManufacturer(productInfo))
+        val apiInterface = ApiInterface.create().postWholeSellerInfo(getManufacturer(productInfo))
 
         apiInterface.enqueue(object : Callback<SupplyResponse> {
             override fun onResponse(
