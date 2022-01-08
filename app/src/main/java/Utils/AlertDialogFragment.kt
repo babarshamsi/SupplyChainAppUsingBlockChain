@@ -25,7 +25,7 @@ import androidx.fragment.app.DialogFragment
 import com.android.supplychainapp.R
 import kotlinx.android.synthetic.main.generic_dialog_fragment_content.*
 
-class GenericDialogFragment: DialogFragment() {
+class AlertDialogFragment: DialogFragment() {
 
     @DrawableRes
     var iconResource = 0
@@ -193,7 +193,7 @@ class GenericDialogFragment: DialogFragment() {
             type: String,
             primaryButtonClickListener: View.OnClickListener,
             secondaryButtonClickListener: View.OnClickListener
-        ): GenericDialogFragment {
+        ): AlertDialogFragment {
             val builder: Builder =
                 Builder()
                     .setIconResource(
@@ -207,7 +207,7 @@ class GenericDialogFragment: DialogFragment() {
                     .setTitleFontStyle(R.string.swansea_bold)
                     .setDescriptionFontStyle(R.string.swansea)
                     .setSecondaryButtonClickListener(secondaryButtonClickListener)
-            val genericDialogFragment: GenericDialogFragment = builder.build()
+            val genericDialogFragment: AlertDialogFragment = builder.build()
             genericDialogFragment.show(
                 activity.supportFragmentManager,
                 "incompleteProductInfoErrorDialog"
@@ -362,16 +362,16 @@ class GenericDialogFragment: DialogFragment() {
             return this
         }
 
-        fun build(): GenericDialogFragment {
-            return newInstance(this, GenericDialogFragment::class.java)!!
+        fun build(): AlertDialogFragment {
+            return newInstance(this, AlertDialogFragment::class.java)!!
         }
 
-        fun <T : GenericDialogFragment?> build(clazz: Class<T>): T? {
+        fun <T : AlertDialogFragment?> build(clazz: Class<T>): T? {
             return newInstance(this, clazz)
         }
 
         companion object {
-            private fun <T : GenericDialogFragment?> newInstance(
+            private fun <T : AlertDialogFragment?> newInstance(
                 builder: Builder,
                 clazz: Class<T>
             ): T? {

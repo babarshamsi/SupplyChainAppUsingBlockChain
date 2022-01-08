@@ -5,7 +5,7 @@ import Extensions.capsFirstLetter
 import Model.Response.SupplyResponse
 import Model.Retailer
 import Network.ApiInterface
-import Utils.GenericDialogFragment
+import Utils.AlertDialogFragment
 import Utils.SingletonForProduct
 import Utils.SingletonForProduct.getBoolForIsAllInfoHasBeenSaved
 import android.content.Intent
@@ -130,7 +130,7 @@ class RetailerActivity : BaseActivity() {
     }
 
     private fun showAlertPopUp() {
-        GenericDialogFragment.showAddMoreInfoErrorDialog(this, Retailer().type,
+        AlertDialogFragment.showAddMoreInfoErrorDialog(this, Retailer().type,
             { Yes ->
                 saveProductInfoAndProceed()
             }) { No ->
