@@ -1,7 +1,6 @@
 package com.supplychainapp
 
 import Model.Response.Chain
-import Model.Supplier
 import Network.ApiInterface
 import android.os.Bundle
 import android.util.Log
@@ -26,15 +25,6 @@ class ConsumerActivity : BaseActivity() {
         convertJSONData(supplierInfo)
     }
 
-    private fun setScannedData(supplier: Supplier?) {
-//        senderName?.text = supplier?.senderName
-//        receiverName?.text = supplier?.receiverName
-//        pickUpFrom?.text = supplier?.pickUpFrom
-//        deliverTo?.text = supplier?.deliverTo
-//        pickUpDate?.text = supplier?.pickUpDate
-//        deliverDate?.text = supplier?.deliverDate
-    }
-
     private fun convertJSONData(supplierInfo: String?) {
         try {
             val obj = JSONObject(supplierInfo)
@@ -42,20 +32,15 @@ class ConsumerActivity : BaseActivity() {
 
             getBlockChainInfo(index)
 
-
-            Log.d("MyApp", supplierInfo.toString())
         } catch (t: Throwable) {
             Log.e("MyApp", "Could not parse malformed JSON: \"" + supplierInfo.toString() + "\"")
         }
-
-//        setScannedData(supplier
 
     }
 
     private fun getBlockChainInfo(index: Int) {
         val apiInterface = ApiInterface.create().getChain()
 
-        //apiInterface.enqueue( Callback<List<Movie>>())
         apiInterface.enqueue( object : Callback<Chain> {
             override fun onResponse(call: Call<Chain>?, response: Response<Chain>?) {
 
@@ -65,8 +50,7 @@ class ConsumerActivity : BaseActivity() {
             }
 
             override fun onFailure(call: Call<Chain>?, t: Throwable?) {
-//                Toast.makeText(this@ConsumerActivity, t.toString(), Toast.LENGTH_LONG).show()
-
+                Log.e("MyApp", "Could not parse malformed JSON: \"" + t.toString() + "\"")
             }
         })
     }

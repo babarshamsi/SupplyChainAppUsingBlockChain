@@ -27,7 +27,7 @@ class ScanViewActivity: AppCompatActivity() {
                 this,
                 arrayOf(Manifest.permission.CAMERA),
                 MY_CAMERA_REQUEST_CODE
-            );
+            )
 
 
         codeScanner = CodeScanner(this, scanner_view)
@@ -45,7 +45,6 @@ class ScanViewActivity: AppCompatActivity() {
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
                 openScanningResultActivity(it.text)
-//                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS

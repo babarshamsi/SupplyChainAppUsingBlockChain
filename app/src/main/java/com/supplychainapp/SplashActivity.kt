@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
             override fun run() {
                 try {
                     // Thread will sleep for 5 seconds
-                    sleep((5 * 1000).toLong())
+                    sleep((3 * 1000).toLong())
 
                     // After 5 seconds redirect to another intent
                     val i = Intent(baseContext, MainActivity::class.java)

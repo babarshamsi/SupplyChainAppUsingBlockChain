@@ -8,7 +8,6 @@ import Network.ApiInterface
 import Utils.GenericDialogFragment
 import Utils.SingletonForProduct
 import Utils.SingletonForProduct.getBoolForIsAllInfoHasBeenSaved
-import Utils.SingletonForProduct.isAllInfoHasBeenSaved
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -130,27 +129,12 @@ class RetailerActivity : BaseActivity() {
         return Gson().toJson(retailer)
     }
 
-    private fun openQRCodeActivityORAddMoreInfo() {
-        if (isAllInfoHasBeenSaved) {
-            saveProductInfoAndProceed()
-        } else {
-            showAlertPopUp()
-        }
-
-    }
-
     private fun showAlertPopUp() {
         GenericDialogFragment.showAddMoreInfoErrorDialog(this, Retailer().type,
             { Yes ->
                 saveProductInfoAndProceed()
-//                if (SingletonForProduct.isRetailerInfoAdded) {
-//                    openRetailer()
-//                } else {
-//                    openManufacturer()
-//                }
             }) { No ->
             // dismiss
-//            saveProductInfoAndProceed()
         }
     }
 

@@ -97,7 +97,6 @@ class WholeSellerActivity : BaseActivity() {
                 call: Call<SupplyResponse>?,
                 response: Response<SupplyResponse>?
             ) {
-
                 Log.d("MyApp", response.toString())
             }
 
@@ -130,21 +129,6 @@ class WholeSellerActivity : BaseActivity() {
             deliverTo = deliverTo.text.toString().trim()
         )
         return Gson().toJson(supplier)
-    }
-
-
-    private fun saveSupplierInfoToBlockChain() {
-        SingletonForProduct.isWholeSellerInfoAdded = true
-        openQRCodeActivityORAddMoreInfo()
-    }
-
-    private fun openQRCodeActivityORAddMoreInfo() {
-        if (isAllInfoHasBeenSaved) {
-            saveProductInfoAndProceed()
-        } else {
-            showAlertPopUp()
-        }
-
     }
 
     private fun showAlertPopUp() {

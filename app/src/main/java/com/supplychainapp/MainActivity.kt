@@ -18,37 +18,23 @@ import retrofit2.Response
 
 
 class MainActivity : BaseActivity() {
+
+    val STORAGE_PERMISSION_REQUEST_CODE = 2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setUpListeners()
         supportActionBar?.title = "Home"
 
-
-        val CAMERA_PERMISSION_REQUEST_CODE = 2
-        val result = ContextCompat.checkSelfPermission(
-        this.applicationContext,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-    )
-    if (result != PackageManager.PERMISSION_GRANTED) {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-        ) {
-            Toast.makeText(
-                this.applicationContext,
-                "External Storage permission needed. Please allow in App Settings for additional functionality.",
-                Toast.LENGTH_LONG
-            ).show()
-        } else {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                CAMERA_PERMISSION_REQUEST_CODE
+                STORAGE_PERMISSION_REQUEST_CODE
             )
         }
-    }
         btnScanBarcode?.setOnClickListener {
 
             val apiInterface = ApiInterface.create().getChain()
@@ -83,6 +69,22 @@ class MainActivity : BaseActivity() {
 
         retailerButton?.setOnClickListener {
             startActivity(Intent(this@MainActivity, RetailerActivity::class.java))
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == STORAGE_PERMISSION_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Storage permission granted", Toast.LENGTH_LONG).show()
+            } else {
+                finish()
+                Toast.makeText(this, "Storage permission denied", Toast.LENGTH_LONG).show()
+            }
         }
     }
 

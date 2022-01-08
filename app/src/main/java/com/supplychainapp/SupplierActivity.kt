@@ -8,7 +8,6 @@ import Network.ApiInterface
 import Utils.GenericDialogFragment
 import Utils.SingletonForProduct.isAllInfoHasBeenSaved
 import Utils.SingletonForProduct.isSupplierInfoAdded
-import Utils.SingletonForProduct.isWholeSellerInfoAdded
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -133,38 +132,12 @@ class SupplierActivity : BaseActivity() {
         return Gson().toJson(supplier)
     }
 
-
-
-
-
-    private fun saveSupplierInfoToBlockChain() {
-        isSupplierInfoAdded = true
-        openQRCodeActivityORAddMoreInfo()
-    }
-
-    private fun openQRCodeActivityORAddMoreInfo() {
-        if (isAllInfoHasBeenSaved) {
-            saveProductInfoAndProceed()
-        } else {
-            showAlertPopUp()
-        }
-
-    }
-
     private fun showAlertPopUp() {
         GenericDialogFragment.showAddMoreInfoErrorDialog(this, Supplier().type,
             { Yes ->
                 saveProductInfoAndProceed()
-
-//                openDesiredScreen()
-                if (isWholeSellerInfoAdded) {
-//                    openRetailer()
-                } else {
-//                    openManufacturer()
-                }
             }) { No ->
             //dismiss
-//            saveProductInfoAndProceed()
         }
     }
 

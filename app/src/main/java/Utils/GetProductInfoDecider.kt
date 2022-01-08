@@ -9,8 +9,6 @@ import com.supplychainapp.WholeSellerActivity
 
 class GetProductInfoDecider {
 
-    val hashMapPrioritiesForSupplyChainBlocks = hashMapOf<SingletonForProduct, Int>()
-
     fun screenToOpen(): Class<*>? {
         if (!isWholeSellerInfoAdded) {
             return WholeSellerActivity::class.java

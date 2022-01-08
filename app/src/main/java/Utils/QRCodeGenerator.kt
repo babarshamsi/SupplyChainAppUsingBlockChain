@@ -14,15 +14,10 @@ class QRCodeGenerator {
 
     private val savePath: String =
         Environment.getExternalStorageDirectory().getPath().toString() + "/QRCode/"
-    private var bitmap: Bitmap? = null
-    private val qrgEncoder: QRGEncoder? = null
 
     fun codeGenerator(inputValue: String): Bitmap? {
 
-//        val manager = getSystemService as WindowManager?
-//        val display = manager!!.defaultDisplay
         val point = Point()
-//        display.getSize(point)
         val width: Int = point.x
         val height: Int = point.y
         var smallerDimension = if (width < height) width else height
@@ -41,18 +36,10 @@ class QRCodeGenerator {
                 qrgEncoder.bitmap,
                 QRGContents.ImageType.IMAGE_JPEG
             )
-            saveQRCode()
-            // Setting Bitmap to ImageView
-//        qrImage.setImageBitmap(bitmap);
         } catch (e: Exception) {
             Log.v("TAG", e.toString());
         }
         return qrgEncoder.bitmap
     }
 
-    private fun saveQRCode() {
-        // Save with location, value, bitmap returned and type of Image(JPG/PNG).
-        // Save with location, value, bitmap returned and type of Image(JPG/PNG).
-
-    }
 }
